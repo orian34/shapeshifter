@@ -1,0 +1,10 @@
+author = orian34
+version = 1.7
+displayName = The Shapeshifter
+homepage = https://forums.terraria.org/index.php?threads/the-shapeshifter.55006/
+hideCode = false
+hideResources = false
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+includePDB = true
+languageVersion = 6

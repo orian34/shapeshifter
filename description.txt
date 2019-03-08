@@ -1,0 +1,72 @@
+This mod is focused on adding more items to become a shapeshifter. 
+Armor sets built from boss remains to impersonate them and gain their abilities and others things.
+For Tmodloader V0.10.1.5
+
+Content :
+-The King Slime Shapeshifter's Armor. Become the ruler of the slimes!
+-The Eye of Cthulhu Shapeshifter's Armor. Become rage incarnate!
+-The Eater of World Shapeshifter's Armor. Become the corrupted worm!
+-The Brain of Cthulhu Shapeshifter's Armor. Become the malicious brain!
+-The Queen Bee Shapeshifter's Armor. Become the swarm queen!
+-The Skeletron Shapeshifter's Armor. Become the cursed guardian!
+-The Wall of Flesh Shapeshifter's Armor. Become the hungry abomination!
+-The Mechamalgam Shapeshifter's Armor. Become the energy-powered amalgam!
+-The Plantera Shapeshifter's Armor. Become the evergrowing plant!
+-The Golem Shapeshifter's Armor. Become the ancient construct!
+-The Duke Fishron Shapeshifter's Armor. Become the mutant fish!
+-The Moon Lord Shapeshifter's Armor. Become the eldritch god!
+-The Lunatic Cultist Shapeshifter's Armor. Become the mystic sorcerer!
+
+v1.7
+Implemented a whole new internal shape system(thanks Jofairden), added a way to analyze your own shape.
+v1.6.5
+Reworked King Slime, Eye of Cthulhu, Eater of World and Brain of Cthulhu's armors. Added a few new abilities and fixed a MP bug!
+v1.6.4
+Revamped the abilities of the Lunatic Shapearmor.  You can still kill pillars through their shield with the shockwaves, that's intended!
+v1.6.3.4
+Added Hamstar's Helpers support.
+v1.6.3.3
+Made the Mechamalgam legs corruption free! You can get them even if your worlds is crimson!
+v1.6.3.2
+Added more info to the buff descriptions.
+v1.6.3.1
+Changed the WoF Shapeplate recipe.
+v1.6.3
+Added a charged jump for King Slime's Armor.
+Fixed Duke Fishron's Armor damage type changes.
+v1.6.2
+Added Lunatic Cultist Armor.
+v1.5.2
+Changed Skeletron Armor sprites.
+Updated to v0.10.1.
+v1.5
+Added Moon Lord Armor.
+v1.4
+Added Duke Fishron Armor.
+v1.3
+Added Golem Armor.
+v1.2
+Added Plantera Armor.
+v1.1.3
+Hotfix for the Laser bug with summons.
+v1.1
+Added Mechamalgam Armor.
+v1.0
+Added Wall of Flesh Armor.
+Random fixes and changes.
+v0.8
+Added Queen Bee Armor.
+Random fixes and changes.
+v0.6
+Added Eater of World Armor.
+Added Brain of Cthulhu Armor.
+Random fixes and changes.
+V0.3.1
+Made some balancing.
+V0.3
+Added Skeletron Armor.
+V0.2
+Added Eye of Cthulhu Armor.
+Buffed the King Slime Armor.
+V0.1
+Added King Slime Armor.
