@@ -30,7 +30,7 @@ namespace Shapeshifter.Items.Armor
 			ModRecipe eaterofworldshapeplate = new ModRecipe(mod);
 			eaterofworldshapeplate.AddIngredient(ItemID.RottenChunk, 15);
 			eaterofworldshapeplate.AddIngredient(ItemID.ShadowScale, 27);
-			eaterofworldshapeplate.AddIngredient(3224);
+			eaterofworldshapeplate.AddIngredient(ItemID.WormScarf);
 			eaterofworldshapeplate.AddTile(TileID.DemonAltar);
 			eaterofworldshapeplate.SetResult(this);
 			eaterofworldshapeplate.AddRecipe();

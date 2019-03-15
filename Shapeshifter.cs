@@ -33,6 +33,7 @@ namespace Shapeshifter
 				AutoloadSounds = true
 			};
 		}
+
 		public override void Load()
 		{
 			// Fill shapeshifts arrays
@@ -48,6 +49,7 @@ namespace Shapeshifter
 			AddEquipTexture(new Items.Armor.GolemShapemaskDanger(), null, EquipType.Head, "GolemShapemaskDanger", "Shapeshifter/Items/Armor/GolemShapemaskDanger_Head");
 			AddEquipTexture(new Items.Armor.GolemShapeplateDanger(), null, EquipType.Body, "GolemShapeplateDanger", "Shapeshifter/Items/Armor/GolemShapeplateDanger_Body", "Shapeshifter/Items/Armor/GolemShapeplateDanger_Arms");
 		}
+
 		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Evil Ore", new int[]
@@ -57,6 +59,22 @@ namespace Shapeshifter
 			}
 			);
 			RecipeGroup.RegisterGroup("anyEvilOre", group);
+			
+			RecipeGroup seeds = new RecipeGroup(() => Lang.misc[37] + " Evil Seed", new int[]
+			{
+			ItemID.CorruptSeeds,
+			ItemID.CrimsonSeeds
+			}
+			);
+			RecipeGroup.RegisterGroup("anyEvilSeed", seeds);
+			
+			RecipeGroup elight = new RecipeGroup(() => Lang.misc[37] + " Evil Light", new int[]
+			{
+			ItemID.ShadowOrb,
+			ItemID.CrimsonHeart
+			}
+			);
+			RecipeGroup.RegisterGroup("anyEvilLight", elight);
 			
 			RecipeGroup tier = new RecipeGroup(() => Lang.misc[37] + " Tier 1 Metal Bar", new int[]
 			{
@@ -81,6 +99,11 @@ namespace Shapeshifter
 			}
 			);
 			RecipeGroup.RegisterGroup("anyMirror", mirror);
+		}
+
+		public override void AddRecipes()
+		{
+			RecipeHelper.AddExpertRecipes(this);
 		}
 	}
 

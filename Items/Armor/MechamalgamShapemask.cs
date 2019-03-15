@@ -40,7 +40,7 @@ namespace Shapeshifter.Items.Armor
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "EyeofCthulhuShapemask");
 			recipe.AddIngredient(ItemID.TwinMask);
-			recipe.AddIngredient(3354);
+			recipe.AddIngredient(ItemID.MechanicalWheelPiece);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

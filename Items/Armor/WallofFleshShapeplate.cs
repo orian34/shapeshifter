@@ -43,7 +43,7 @@ namespace Shapeshifter.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(490);
+			recipe.AddIngredient(ItemID.DemonHeart);
 			recipe.AddIngredient(null, "EyeofCthulhuShapeplate");
 			recipe.AddRecipeGroup("anyTier1Bar", 20);
 			recipe.AddTile(TileID.Hellforge);

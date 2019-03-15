@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("King Slime Shapeplate");
-			Tooltip.SetDefault("Reduces damage taken by 14% \nSlimes become friendly. \n[c/0066CC:2/3 King Slime Set Piece]");
+			Tooltip.SetDefault("Reduces damage taken by 8% \nSlimes become friendly. \n[c/0066CC:2/3 King Slime Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -23,7 +23,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.endurance += 0.14f;
+			player.endurance += 0.08f;
 			player.npcTypeNoAggro[1] = true;
 			player.npcTypeNoAggro[16] = true;
 			player.npcTypeNoAggro[59] = true;

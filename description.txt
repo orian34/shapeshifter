@@ -17,6 +17,8 @@ Content :
 -The Moon Lord Shapeshifter's Armor. Become the eldritch god!
 -The Lunatic Cultist Shapeshifter's Armor. Become the mystic sorcerer!
 
+v1.7.3
+Added Expert item recipes! Changed the WoF recipe to now use the Demon Heart.
 v1.7
 Implemented a whole new internal shape system(thanks Jofairden), added a way to analyze your own shape.
 v1.6.5

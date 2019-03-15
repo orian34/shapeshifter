@@ -29,7 +29,7 @@ namespace Shapeshifter.Items.Armor
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.HermesBoots);
 			recipe.AddIngredient(ItemID.DestroyerMask);
-			recipe.AddIngredient(3355);
+			recipe.AddIngredient(ItemID.MechanicalWagonPiece);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

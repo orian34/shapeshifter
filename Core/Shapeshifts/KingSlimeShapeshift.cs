@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -75,7 +76,8 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			if (player.ownedProjectileCounts[266] < 2 && player.whoAmI == Main.myPlayer)
 			{
-				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, 266, 8, 0, player.whoAmI);
+				int dmg = (int)(8f * player.minionDamage);
+				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, 266, dmg, 0, player.whoAmI);
 			}
 			if (player.ownedProjectileCounts[266] > 0)
             {

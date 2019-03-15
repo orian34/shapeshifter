@@ -30,7 +30,7 @@ namespace Shapeshifter.Items.Armor
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "SkeletronShapeplate");
 			recipe.AddIngredient(ItemID.SkeletronPrimeMask);
-			recipe.AddIngredient(3356);
+			recipe.AddIngredient(ItemID.MechanicalBatteryPiece);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
