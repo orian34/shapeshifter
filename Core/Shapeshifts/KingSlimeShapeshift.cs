@@ -35,7 +35,7 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.maxMinions += 2;
+			player.maxMinions += 1;
 			player.extraFall += 15;
 			player.npcTypeNoAggro[1] = true;
 			player.npcTypeNoAggro[16] = true;
@@ -95,9 +95,9 @@ namespace Shapeshifter.Core.Shapeshifts
 			{
 				player.drippingSlime = true;
 			}
-			if (player.ownedProjectileCounts[266] < 2 && player.whoAmI == Main.myPlayer)
+			if (player.ownedProjectileCounts[266] < 1 && player.whoAmI == Main.myPlayer)
 			{
-				int dmg = (int)(8f * player.minionDamage);
+				int dmg = (int)(7f * player.minionDamage);
 				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, 266, dmg, 0, player.whoAmI);
 			}
 			if (player.ownedProjectileCounts[266] > 0)

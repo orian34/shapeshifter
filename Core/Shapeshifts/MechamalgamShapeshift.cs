@@ -94,7 +94,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 			if(energyCount > 0) 
 			{
-				if(player.velocity.X == 0 && player.velocity.Y == 0) {energyCount -= 100;}
+				if(player.velocity.X == 0 && player.velocity.Y == 0) {energyCount -= 50;}
 				energyCount -= 3;
 			}
 			if(energyCount < 0) {energyCount = 0;}
@@ -103,14 +103,14 @@ namespace Shapeshifter.Core.Shapeshifts
 				charged = true;
 				if(energyCount > 30000) {energyCount = 30000;}
 				float e = energyCount/1000f;
-				int m = (int)(e/5f);
+				int m = (int)Math.Round(e/5f, 0, MidpointRounding.AwayFromZero);
 				player.maxRunSpeed += e/9f;
 				player.maxMinions += m;
 				player.minionDamage += e/150f;
 				player.rangedDamage += e/150f;
 				player.wallSpeed +=  e/10f;
 				player.tileSpeed +=  e/10f;
-				Player.tileRangeX += m;
+				Player.tileRangeX += m+1;
 				Player.tileRangeY += m+1;
 				if(energyCount > 15000) {megaCharged = true;}
 				else { megaCharged = false; }
