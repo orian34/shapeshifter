@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall of Flesh Shapemask");
-			Tooltip.SetDefault("'This mask is full of hunger.' \n4% increased melee damage");
+			Tooltip.SetDefault("'This mask is full of hunger.' \n5% increased melee damage \n[c/9E0202:1/3 Wall of Flesh Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -29,7 +29,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.meleeDamage += 0.04f;
+			player.meleeDamage += 0.05f;
 		}
 		public override void UpdateArmorSet(Player player)
 		{

@@ -20,7 +20,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Skeletron Shapemask");
-			Tooltip.SetDefault("'This mask is cursed.' \n4% increased throwing damage");
+			Tooltip.SetDefault("'This mask is cursed.' \n4% increased throwing damage \n[c/C0AE90:1/3 Skeletron Set Piece]");
 		}
 		public override void SetDefaults()
 		{

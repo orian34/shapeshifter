@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Skeletron Shapelegs");
-			Tooltip.SetDefault("4% increased throwing damage");
+			Tooltip.SetDefault("4% increased throwing damage \n[c/C0AE90:3/3 Skeletron Set Piece]");
 		}
 		public override void SetDefaults()
 		{

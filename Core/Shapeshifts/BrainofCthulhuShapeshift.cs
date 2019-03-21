@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Brain of Cthulhu";
 		public override string ShapeshiftName => "Brain of Cthulhu Shapeshift";
-		public override string ShapeDesc => "Greatly increases magic damage but nullifies mana regen, magic crit and increases mana cost. Mana instead gets refilled by tapping in weak minds or when you hit enemies with magic. You get random beneficial buffs by hurting enemies with magic.";
+		public override string ShapeDesc => "Greatly increases magic damage but nullifies mana regen, magic crit and increases mana cost. Mana gets refilled by tapping in weak minds or when you hit enemies with magic. You get random beneficial buffs by hurting enemies with magic.";
 
 		public override void Activate()
 		{
@@ -27,14 +27,14 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.buffImmune[31] = true;
-			player.buffImmune[35] = true;
 			player.magicDamage += 1.15f;
 			player.manaCost += 4.55f;
 		}
 
 		public override void PostUpdateBuffs()
 		{
+			player.buffImmune[31] = true;
+			player.buffImmune[35] = true;
 			if (player.FindBuffIndex(BuffID.Poisoned) != -1 || player.FindBuffIndex(BuffID.Bleeding) != -1)	
 			{
 				if(Main.rand.Next(7) == 0)
@@ -63,7 +63,7 @@ namespace Shapeshifter.Core.Shapeshifts
 				   float lookToX = target.position.X + (float)target.width * 0.5f - player.Center.X;
 					float lookToY = target.position.Y - player.Center.Y;
 				   float distance = (float)System.Math.Sqrt((double)(lookToX * lookToX + lookToY * lookToY));
-				   if(distance < 444f)
+				   if(distance < 555f)
 				   {
 					   if(Main.rand.Next(3) == 0) player.statMana += 1;
 						if (player.statMana > player.statManaMax2)
@@ -88,7 +88,7 @@ namespace Shapeshifter.Core.Shapeshifts
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
-			if(proj.magic)
+			if(proj.magic && target.CanBeChasedBy())
 			{
 				double x = 0.36f*damage;
 				int b = (int)x;
@@ -111,11 +111,17 @@ namespace Shapeshifter.Core.Shapeshifts
 					}
 					target.AddBuff(BuffID.Confused, 600, true);
 				}
-				if(Main.rand.Next(16) == 0) player.AddBuff(BuffID.Heartreach, 270, true);
+				if(Main.rand.Next(16) == 0) player.AddBuff(BuffID.Heartreach, 370, true);
 				if(Main.rand.Next(27) == 0) player.AddBuff(BuffID.Regeneration, 1020, true);
 				if(Main.rand.Next(16) == 0) player.AddBuff(BuffID.Swiftness, 840, true);
 				if(Main.rand.Next(39) == 0) player.AddBuff(BuffID.SoulDrain, 1330, true);
 				if(Main.rand.Next(23) == 0) player.AddBuff(BuffID.Panic, 300, true);
+				if(Main.rand.Next(18) == 0) player.AddBuff(BuffID.NightOwl, 410, true);
+				if(Main.rand.Next(31) == 0) player.AddBuff(BuffID.MagicPower, 730, true);
+				if(Main.rand.Next(25) == 0) player.AddBuff(BuffID.Hunter, 640, true);
+				if(Main.rand.Next(19) == 0) player.AddBuff(BuffID.Dangersense, 530, true);
+				if(Main.rand.Next(45) == 0) player.AddBuff(BuffID.RapidHealing, 390, true);
+				if(Main.rand.Next(21) == 0) player.AddBuff(BuffID.Clairvoyance, 830, true);
 			}
 		}
 

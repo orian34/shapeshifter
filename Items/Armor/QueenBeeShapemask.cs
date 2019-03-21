@@ -20,7 +20,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Queen Bee Shapemask");
-			Tooltip.SetDefault("'This mask breaks your mind.' \n4% increased ranged damage");
+			Tooltip.SetDefault("'This mask breaks your mind.' \n4% increased ranged damage \n[c/FF8000:1/3 Queen Bee Set Piece]");
 		}
 		public override void SetDefaults()
 		{

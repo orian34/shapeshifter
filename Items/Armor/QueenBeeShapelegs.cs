@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Queen Bee Shapelegs");
-			Tooltip.SetDefault("4% increased ranged damage");
+			Tooltip.SetDefault("4% increased ranged damage \n[c/FF8000:3/3 Queen Bee Set Piece]");
 		}
 		public override void SetDefaults()
 		{

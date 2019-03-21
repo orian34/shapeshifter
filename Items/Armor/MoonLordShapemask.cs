@@ -30,7 +30,6 @@ namespace Shapeshifter.Items.Armor
 		public override void UpdateEquip(Player player)
 		{
 			player.rangedCrit += 30;
-			player.scope = true;
 			player.findTreasure = true;
 			player.nightVision = true;
 			player.detectCreature = true;

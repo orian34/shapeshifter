@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Lunatic Cultist Shapemask");
-		Tooltip.SetDefault("'This mask gives you mystic understanding.' \nGreatly improved mana regeneration. \n[c/4C9900:1/2 Lunatic Set Piece]");
+		Tooltip.SetDefault("'This mask gives you mystic understanding.' \nGreatly improved mana regeneration. \n[c/4A1FA1:1/2 Lunatic Set Piece]");
 		}
 		public override void SetDefaults()
 		{

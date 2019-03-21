@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Eater of Worlds Shapelegs");
-			Tooltip.SetDefault("8% increased movement speed \n[c/003300:3/3 Eater of Worlds Set Piece]");
+			Tooltip.SetDefault("8% increased movement speed \n[c/127C12:3/3 Eater of Worlds Set Piece]");
 		}
 		public override void SetDefaults()
 		{

@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall of Flesh Shapelegs");
-			Tooltip.SetDefault("4% increased movement speed");
+			Tooltip.SetDefault("8% increased movement speed \n[c/9E0202:3/3 Wall of Flesh Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -23,7 +23,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 0.04f;
+			player.moveSpeed += 0.08f;
 		}
 		public override void AddRecipes()
 		{

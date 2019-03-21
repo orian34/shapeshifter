@@ -22,7 +22,7 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void Activate()
 		{
-			dangerTimer = 3600f;
+			dangerTimer = 1200f;
 			laserTimer = 600f;
 			dangerMode = true;
 		}
@@ -109,8 +109,8 @@ namespace Shapeshifter.Core.Shapeshifts
 			if (dangerMode)
 			{
 				Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 1.2f, 0f, 0f);
-				player.head = mod.GetEquipSlot("GolemShapemaskDanger", EquipType.Head);
-				player.body = mod.GetEquipSlot("GolemShapeplateDanger", EquipType.Body);
+				if(player.armor[10].headSlot < 0) {player.head = mod.GetEquipSlot("GolemShapemaskDanger", EquipType.Head);}
+				if(player.armor[11].bodySlot < 0) {player.body = mod.GetEquipSlot("GolemShapeplateDanger", EquipType.Body);}
 			}
 			else
 			{

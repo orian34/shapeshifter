@@ -27,10 +27,6 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.buffImmune[BuffID.Darkness] = true;
-			player.buffImmune[BuffID.Confused] = true;
-			player.buffImmune[BuffID.Slow] = true;
-			player.buffImmune[BuffID.Weak] = true;
 			player.minionDamage += 0.7f;
 			player.thrownDamage += 0.7f;
 			player.magicDamage -= 0.7f;
@@ -42,6 +38,10 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PostUpdateBuffs()
 		{
+			player.buffImmune[BuffID.Darkness] = true;
+			player.buffImmune[BuffID.Confused] = true;
+			player.buffImmune[BuffID.Slow] = true;
+			player.buffImmune[BuffID.Weak] = true;
 			if(player.velocity.X != 0 && player.velocity.Y > 0 && !player.controlDown)
 			{
 				player.velocity.Y = 0;

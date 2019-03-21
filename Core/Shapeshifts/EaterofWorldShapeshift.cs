@@ -27,8 +27,6 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.buffImmune[20] = true;
-			player.buffImmune[24] = true;
 			player.npcTypeNoAggro[6] = true;
 			player.npcTypeNoAggro[94] = true;
 			player.npcTypeNoAggro[7] = true;
@@ -43,23 +41,34 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.rangedCrit += 12;
 		}
 
+		public override void PostUpdateBuffs()
+		{
+			player.buffImmune[20] = true;
+			player.buffImmune[24] = true;
+		}
+
 		public override void OnHitAnything(float x, float y, Entity victim)
 		{
+			int dmg = (int)(15f*player.rangedDamage);
 			if(Main.rand.Next(8) == 0)
 			{
-				Projectile.NewProjectile(x, y, 0.1f, 0.1f, ProjectileID.EatersBite, 22, 0, Main.myPlayer);
+				int newProj = Projectile.NewProjectile(x, y, 0.1f, 0.1f, ProjectileID.EatersBite, dmg, 0, Main.myPlayer);
+				Main.projectile[newProj].timeLeft = 2;
 			}
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			double x = 0.1f*player.statLifeMax2;
+			double x = 0.12f*player.statLifeMax2;
 			int b = (int)x;
 			player.statLife -= b;
 			Main.PlaySound(4 , player.position, 1);
+			int dmg = (int)(20f*player.meleeDamage);
 			for (int i = 0; i < 7; i++)
 			{
-				Projectile.NewProjectile(player.position.X+Main.rand.Next(-1,2), player.position.Y+Main.rand.Next(-2,3), Main.rand.Next(-150,151)*0.01f, Main.rand.Next(-150,151)*0.01f, ProjectileID.TinyEater, 11, 0, Main.myPlayer);
+				float speedX = (float)Main.rand.Next(-150, 151) * 0.01f;
+				float speedY = (float)Main.rand.Next(-150, 151) * 0.01f;
+				Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, ProjectileID.TinyEater, dmg, 0, Main.myPlayer);
 			}
 		}
 	}

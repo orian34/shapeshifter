@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall of Flesh Shapeplate");
-			Tooltip.SetDefault("Increases your constitution potential");
+			Tooltip.SetDefault("8% increased melee speed \n[c/9E0202:2/3 Wall of Flesh Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -24,21 +24,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			double x = player.statLifeMax2*1.45f;
-			int b = (int)x;
-			player.statLifeMax2 += b;
-			if(player.lifeRegenTime > 0)
-			{
-				player.lifeRegenTime = 0;
-			}
-			if(player.lifeRegen > 0)
-			{
-				player.lifeRegen = 0;
-			}
-			if(player.lifeRegenCount > 0)
-			{
-				player.lifeRegenCount = 0;
-			}
+			player.meleeSpeed += 0.08f;
 		}
 		public override void AddRecipes()
 		{

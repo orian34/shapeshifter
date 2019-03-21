@@ -55,7 +55,7 @@ namespace Shapeshifter.Core.Shapeshifts
             {
                 player.sharknadoMinion = true;
             }
-			if(!player.wet && !player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight && !player.wet)
+			if(!player.wet && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight))
 			{
 				dukeBreath--;
 				if(dukeBreath <= 0)

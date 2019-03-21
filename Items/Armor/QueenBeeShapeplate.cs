@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Queen Bee Shapeplate");
-			Tooltip.SetDefault("Increases the strength of friendly bees.");
+			Tooltip.SetDefault("Increases the strength of friendly bees. \n[c/FF8000:2/3 Queen Bee Set Piece]");
 		}
 		public override void SetDefaults()
 		{

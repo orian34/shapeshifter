@@ -39,6 +39,10 @@ namespace Shapeshifter.Items.Armor
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
+		public override void UpdateVanity(Player player, EquipType type)
+		{
+			player.shoe = 0;
+		}
 		public override bool DrawLegs()
 		{
 			return false;

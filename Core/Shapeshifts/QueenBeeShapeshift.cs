@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -15,30 +16,22 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Queen Bee";
 		public override string ShapeshiftName => "Queen Bee Shapeshift";
-		public override string ShapeDesc => "The more bees you have, the more powerful and enduring you get, especially in ranged and throwing.";
+		public override string ShapeDesc => "The more bees you have, the more powerful you get in ranged and throwing. You can produce bees by fighting, not moving creates more bees.";
 
 		public bool queenSwarm;
-		public bool queenSwarm2;
 
 		public override void Activate()
 		{
 			queenSwarm = false;
-			queenSwarm2 = false;
 		}
 
 		public override void Deactivate()
 		{
 			queenSwarm = false;
-			queenSwarm2 = false;
 		}
 
 		public override void PreUpdateBuffs()
 		{
-			player.buffImmune[12] = true;
-			player.buffImmune[22] = true;
-			player.buffImmune[31] = true;
-			player.buffImmune[37] = true;
-			player.buffImmune[63] = true;
 			player.npcTypeNoAggro[210] = true;
 			player.npcTypeNoAggro[211] = true;
 			player.npcTypeNoAggro[42] = true;
@@ -50,65 +43,88 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[235] = true;
 			player.npcTypeNoAggro[426] = true;
 			player.npcTypeNoAggro[427] = true;
+			player.endurance -= 0.33f;
 		}
 
 		public override void PostUpdateBuffs()
 		{
-			double x = 0.004f*player.ownedProjectileCounts[181];
-			double y = 0.008f*player.ownedProjectileCounts[566];
-			double w = 0.012f*player.ownedProjectileCounts[469];
-			double v = 0.005f*player.ownedProjectileCounts[373];
-			float z = (float)x+(float)y+(float)w+(float)v;
-			int h = (int)z*10;
-			player.thrownDamage += z*0.36f;
-			player.rangedDamage += z*0.78f;
-			player.manaCost += z*3f;
-			player.lifeRegenTime += h;
-			player.lifeRegen += h;
-			player.endurance += z*0.36f-0.33f;
-			if(z>0.65f)
+			player.buffImmune[12] = true;
+			player.buffImmune[22] = true;
+			player.buffImmune[31] = true;
+			player.buffImmune[37] = true;
+			player.buffImmune[63] = true;
+			double x = 4f*player.ownedProjectileCounts[ProjectileID.Bee] + 8f*player.ownedProjectileCounts[ProjectileID.GiantBee] + 12f*player.ownedProjectileCounts[ProjectileID.BeeArrow] + 5f*player.ownedProjectileCounts[ProjectileID.Hornet];
+			float z = (float)Math.Sqrt(x)/150;
+			///int h = (int)Math.Round(Math.Sqrt(x)/15, 0, MidpointRounding.AwayFromZero);
+			player.thrownDamage += z;
+			player.rangedDamage += z;
+			player.pickSpeed -= 2f*z;
+			player.manaCost += z*10f;
+			///player.lifeRegenTime += h;
+			///player.lifeRegen += h;
+			if(z>0.2f)
 			{
 				player.lifeMagnet = true;
-				queenSwarm2 = true;
-				queenSwarm = false;
-			}
-			else if(z > 0.45f)
-			{
+				player.strongBees = true;
 				queenSwarm = true;
-				queenSwarm2 = false;
 			}
 			else 
 			{ 
-				queenSwarm = false; 
-				queenSwarm2 = false;
+				queenSwarm = false;
 			}
 		}
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
-			if(queenSwarm2)
+			if((proj.ranged || proj.thrown) && target.CanBeChasedBy())
 			{
-				if(Main.rand.Next(9) == 0)
+				if(queenSwarm)
 				{
-					target.AddBuff(BuffID.Venom, 789, true);
+					if(Main.rand.Next(31) == 0)
+					{
+						target.AddBuff(BuffID.Venom, 789, true);
+					}
+					else if(Main.rand.Next(19) == 0)
+					{
+						target.AddBuff(BuffID.Poisoned, 420, true);
+					}
 				}
-				else
+				if(proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && proj.type != ProjectileID.Hornet)
 				{
-					target.AddBuff(BuffID.Poisoned, 987, true);
+					int num18 = 1;
+					int dmg = (int)(7f*player.thrownDamage);
+					if(player.velocity.X == 0 && player.velocity.Y == 0)
+					{
+						if (Main.rand.Next(3) == 0)
+						{
+							num18++;
+						}
+						if (Main.rand.Next(3) == 0)
+						{
+							num18++;
+						}
+						if (Main.rand.Next(3) == 0)
+						{
+							num18++;
+						}
+					}
+					for (int num19 = 0; num19 < num18; num19++)
+					{
+						float speedX = (float)Main.rand.Next(-35, 36) * 0.02f;
+						float speedY = (float)Main.rand.Next(-35, 36) * 0.02f;
+						Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, player.beeType(), player.beeDamage(dmg), player.beeKB(0f), Main.myPlayer, 0f, 0f);
+					}
 				}
-			}
-			else if(queenSwarm)
-			{
-				if(Main.rand.Next(21) == 0) target.AddBuff(BuffID.Poisoned, 420, true);
 			}
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			Main.PlaySound(3 , player.position, 1);
-			if(queenSwarm2)
+			Main.PlaySound(3 , player.position, 35);
+			int num18 = 2;
+			int dmg = (int)(7f*player.rangedDamage);
+			if(queenSwarm)
 			{
-				int num18 = 1;
 				if (Main.rand.Next(3) == 0)
 				{
 					num18++;
@@ -121,12 +137,12 @@ namespace Shapeshifter.Core.Shapeshifts
 				{
 					num18++;
 				}
-				for (int num19 = 0; num19 < num18; num19++)
-				{
-					float speedX = (float)Main.rand.Next(-35, 36) * 0.02f;
-					float speedY = (float)Main.rand.Next(-35, 36) * 0.02f;
-					Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, player.beeType(), player.beeDamage(7), player.beeKB(0f), Main.myPlayer, 0f, 0f);
-				}
+			}
+			for (int num19 = 0; num19 < num18; num19++)
+			{
+				float speedX = (float)Main.rand.Next(-35, 36) * 0.02f;
+				float speedY = (float)Main.rand.Next(-35, 36) * 0.02f;
+				Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, player.beeType(), player.beeDamage(dmg), player.beeKB(0f), Main.myPlayer, 0f, 0f);
 			}
 		}
 	}

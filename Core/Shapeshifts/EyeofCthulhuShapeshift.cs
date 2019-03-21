@@ -42,29 +42,29 @@ namespace Shapeshifter.Core.Shapeshifts
 
 			if ((double)player.statLife <= (double)player.statLifeMax2 * 0.8)
 			{
-				player.moveSpeed += 0.1f;
-				player.meleeSpeed += 0.1f;
-				player.meleeDamage += 0.1f;
-				player.thrownDamage += 0.08f;
+				player.moveSpeed += 0.07f;
+				player.meleeSpeed += 0.07f;
+				player.meleeDamage += 0.07f;
+				player.thrownDamage += 0.05f;
 				if ((double)player.statLife <= (double)player.statLifeMax2 * 0.6)
 				{
-					player.moveSpeed += 0.15f;
-					player.meleeSpeed += 0.15f;
-					player.meleeDamage += 0.15f;
-					player.thrownDamage += 0.1f;
+					player.moveSpeed += 0.09f;
+					player.meleeSpeed += 0.09f;
+					player.meleeDamage += 0.09f;
+					player.thrownDamage += 0.07f;
 					if ((double)player.statLife <= (double)player.statLifeMax2 * 0.4)
 					{
-						player.moveSpeed += 0.15f;
-						player.meleeSpeed += 0.15f;
-						player.meleeDamage += 0.15f;
-						player.thrownDamage += 0.15f;
+						player.moveSpeed += 0.1f;
+						player.meleeSpeed += 0.1f;
+						player.meleeDamage += 0.1f;
+						player.thrownDamage += 0.1f;
 						player.blind = true;
 						eocRage = true;
 						if ((double)player.statLife <= (double)player.statLifeMax2 * 0.2)
 						{
-							player.moveSpeed += 0.5f;
-							player.meleeSpeed += 0.5f;
-							player.meleeDamage += 0.5f;
+							player.moveSpeed += 0.4f;
+							player.meleeSpeed += 0.4f;
+							player.meleeDamage += 0.4f;
 							player.thrownDamage += 0.3f;
 							player.endurance -= 2f;
 							player.detectCreature = true;
@@ -94,7 +94,6 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 			if(!eocRage)
 			{
-				player.scope = true;
 				player.nightVision = true;
 			}
 		}

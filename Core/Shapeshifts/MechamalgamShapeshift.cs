@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Mechamalgam";
 		public override string ShapeshiftName => "Mechamalgam Shapeshift";
-		public override string ShapeDesc => "The greater your velocity is, the more energy you gain. Once you are powered enough, your speed, minion slots and ranged damage gradually increase with your energy charge.";
+		public override string ShapeDesc => "The greater your velocity is, the more energy you gain. Your speed, building, minion and ranged ability gradually increase with your energy charge. Weakness to water.";
 
 		public float energyCount;
 		public bool megaCharged;
@@ -37,11 +37,14 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
+			player.nightVision = true;
+		}
+
+		public override void PostUpdateBuffs()
+		{
 			player.buffImmune[20] = true;
 			player.buffImmune[31] = true;
 			player.buffImmune[32] = true;
-			player.nightVision = true;
-
 			int num16 = (int)(1f + Main.player[Main.myPlayer].velocity.Length() * 6f);
 			if (num16 > Main.player[Main.myPlayer].speedSlice.Length)
 			{
@@ -69,69 +72,92 @@ namespace Shapeshifter.Core.Shapeshifts
 			{
 				energyCount += num17;
 			}
-		}
-
-		public override void PostUpdateBuffs()
-		{
+			if (player.FindBuffIndex(BuffID.Electrified) != -1)	{energyCount += 100;}
+			if(player.wet || Main.raining && player.ZoneOverworldHeight)
+			{
+				energyCount -= 10;
+				int r = 7;
+				if(player.wet) {r=1;}
+				if(Main.rand.Next(r) == 0)
+				{
+					player.statLife--;
+				}
+				if (player.statLife <= 0)
+				{
+					player.statLife = 0;
+					player.KillMe(PlayerDeathReason.ByCustomReason("Hydrolic Surcharge! System Shut Down."), 10.0, 0, false);
+				}
+				if (Main.rand.Next(120) == 0)
+				{
+					Main.PlaySound(3 , player.position, 53);
+				}
+			}
+			if(energyCount > 0) 
+			{
+				if(player.velocity.X == 0 && player.velocity.Y == 0) {energyCount -= 100;}
+				energyCount -= 3;
+			}
+			if(energyCount < 0) {energyCount = 0;}
 			if(energyCount > 3000)
 			{
 				charged = true;
-				player.maxRunSpeed += energyCount/1200f;
-				int m = (int)(energyCount/4000f);
+				if(energyCount > 30000) {energyCount = 30000;}
+				float e = energyCount/1000f;
+				int m = (int)(e/5f);
+				player.maxRunSpeed += e/9f;
 				player.maxMinions += m;
-				player.rangedDamage += energyCount/1200f;
-				player.wallSpeed +=  energyCount/9000f;
-				player.tileSpeed +=  energyCount/10000f;
+				player.minionDamage += e/150f;
+				player.rangedDamage += e/150f;
+				player.wallSpeed +=  e/10f;
+				player.tileSpeed +=  e/10f;
 				Player.tileRangeX += m;
 				Player.tileRangeY += m+1;
-				if(energyCount > 15000)
-				{
-					megaCharged = true;
-				}
+				if(energyCount > 15000) {megaCharged = true;}
 				else { megaCharged = false; }
 			}
 			else
 			{
 				player.meleeSpeed -= 0.6f;
-				player.meleeDamage -= 0.44f;
-				player.thrownDamage -= 0.46f;
-				player.rangedDamage -= 0.56f;
-				player.magicDamage -= 0.57f;
-				player.minionDamage -= 0.56f;
+				player.meleeDamage -= 0.24f;
+				player.thrownDamage -= 0.26f;
+				player.rangedDamage -= 0.26f;
+				player.magicDamage -= 0.27f;
+				player.minionDamage -= 0.26f;
 				charged = false;
 				megaCharged = false;
-			}
-			if(energyCount > 0)
-			{
-				energyCount -= 3;
-			}
-			if(energyCount < 0)
-			{
-				energyCount = 0;
 			}
 		}
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
-			if(charged && (proj.ranged || proj.minion))
+			if(charged && (proj.ranged || proj.minion) && target.CanBeChasedBy())
 			{
 				if(megaCharged)
 				{
-					if(Main.rand.Next(6) == 0)
+					int dmg = (int)(366f*player.minionDamage);
+					int dmg2 = (int)(222f*player.rangedDamage);
+					if(Main.rand.Next(8) == 0)
 					{
-						Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-6, mod.ProjectileType("MechInferno"), 566, 0, Main.myPlayer);
-						Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-8, mod.ProjectileType("MechLaser"), 355, 0, Main.myPlayer);
-						Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-7, mod.ProjectileType("MechLaser"), 355, 0, Main.myPlayer);
-						this.energyCount -= 1678f;
+						int newProj = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-6, mod.ProjectileType("MechInferno"), dmg, 0, Main.myPlayer);
+						int newProj2 = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-8, mod.ProjectileType("MechLaser"), dmg2, 0, Main.myPlayer);
+						int newProj3 = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-6, mod.ProjectileType("MechLaser"), dmg2, 0, Main.myPlayer);
+						energyCount -= 1399f;
+						Main.projectile[newProj].timeLeft = 900;
+						Main.projectile[newProj2].timeLeft = 300;
+						Main.projectile[newProj3].timeLeft = 350;
 					}
 				}
 				else
 				{
-					if(Main.rand.Next(8) == 0)
+					int dmg = (int)(211f*player.minionDamage);
+					int dmg2 = (int)(88f*player.rangedDamage);
+					if(Main.rand.Next(11) == 0)
 					{
-						Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-8, mod.ProjectileType("MechLaser"), 233, 0, Main.myPlayer);
-						Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-6, mod.ProjectileType("MechInferno"), 355, 0, Main.myPlayer);
-						this.energyCount -= 999f;
+						int newProj = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-6, mod.ProjectileType("MechInferno"), dmg, 0, Main.myPlayer);
+						int newProj2 = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-8, mod.ProjectileType("MechLaser"), dmg2, 0, Main.myPlayer);
+						energyCount -= 699f;
+						Main.projectile[newProj].timeLeft = 900;
+						Main.projectile[newProj2].timeLeft = 300;
 					}
 				}
 			}
@@ -143,10 +169,10 @@ namespace Shapeshifter.Core.Shapeshifts
 			if(charged)
 			{
 				Main.PlaySound(3 , player.position, 53);
-				this.energyCount -= 1000f;
-				if(this.energyCount < 0)
+				energyCount -= 2000f;
+				if(energyCount < 0)
 				{
-					this.energyCount = 0f;
+					energyCount = 0f;
 				}
 			}
 		}
@@ -156,7 +182,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			if(charged)
 			{
 				Lighting.AddLight(player.Center, 1f, 0f, 0f);
-				if(Main.rand.Next(13) == 0)
+				if(Main.rand.Next(11) == 0)
 				{
 					int newDust = Dust.NewDust(player.position, player.width, player.height, 226, 0f, -1f, 0, default(Color));
 					Main.dust[newDust].noGravity = true;

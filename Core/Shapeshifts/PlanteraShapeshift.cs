@@ -176,7 +176,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 			if(awakened)
 			{
-				player.head = mod.GetEquipSlot("PlanteraShapemaskAwakened", EquipType.Head);
+				if(player.armor[10].headSlot < 0) {player.head = mod.GetEquipSlot("PlanteraShapemaskAwakened", EquipType.Head);}
 			}
 		}
 	}

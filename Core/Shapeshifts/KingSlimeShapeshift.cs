@@ -37,12 +37,41 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			player.maxMinions += 2;
 			player.extraFall += 15;
-			
+			player.npcTypeNoAggro[1] = true;
+			player.npcTypeNoAggro[16] = true;
+			player.npcTypeNoAggro[59] = true;
+			player.npcTypeNoAggro[71] = true;
+			player.npcTypeNoAggro[81] = true;
+			player.npcTypeNoAggro[138] = true;
+			player.npcTypeNoAggro[121] = true;
+			player.npcTypeNoAggro[122] = true;
+			player.npcTypeNoAggro[141] = true;
+			player.npcTypeNoAggro[147] = true;
+			player.npcTypeNoAggro[183] = true;
+			player.npcTypeNoAggro[184] = true;
+			player.npcTypeNoAggro[204] = true;
+			player.npcTypeNoAggro[225] = true;
+			player.npcTypeNoAggro[244] = true;
+			player.npcTypeNoAggro[302] = true;
+			player.npcTypeNoAggro[333] = true;
+			player.npcTypeNoAggro[335] = true;
+			player.npcTypeNoAggro[334] = true;
+			player.npcTypeNoAggro[336] = true;
+			player.npcTypeNoAggro[537] = true;
+			if(player.lavaWet || player.FindBuffIndex(BuffID.OnFire) != -1)
+			{
+				slimeFire = true;
+			}
+			else {slimeFire = false;}
+		}
+
+		public override void PostUpdateBuffs()
+		{
 			if(player.velocity.Y == 0 && !player.mount.Active)
 			{
 				if(player.controlDown)
 				{
-					slimeJump += 15f;
+					slimeJump += 25f;
 					if(slimeJump >= 3000)
 					{
 						slimeJump = 3000f;
@@ -60,20 +89,12 @@ namespace Shapeshifter.Core.Shapeshifts
 				}
 				slimeJump = 0f;
 			}
-			int j = (int)(slimeJump/100f)-2;
+			int j = (int)(slimeJump/100f)-3;
 			Player.jumpHeight += j;
 			if(slimeJump > 0)
 			{
 				player.drippingSlime = true;
 			}
-			if(player.lavaWet || player.FindBuffIndex(BuffID.OnFire) != -1)
-			{
-				slimeFire = true;
-			}
-		}
-
-		public override void PostUpdateBuffs()
-		{
 			if (player.ownedProjectileCounts[266] < 2 && player.whoAmI == Main.myPlayer)
 			{
 				int dmg = (int)(8f * player.minionDamage);
@@ -92,7 +113,7 @@ namespace Shapeshifter.Core.Shapeshifts
 				for (int i = 0; i < 200; i++)
 				{
 				  NPC target = Main.npc[i];
-				  if (target.active && !target.dontTakeDamage && !target.friendly && target.immune[player.whoAmI] == 0)
+				  if (target.CanBeChasedBy() && target.immune[player.whoAmI] == 0)
 				  {
 					Rectangle rect2 = target.getRect();
 					if (rect.Intersects(rect2) && (target.noTileCollide || Collision.CanHit(player.position, player.width, player.height, target.position, target.width, target.height)))
@@ -122,7 +143,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			  }
 			if(slimeFire)
 			{
-				if(Main.rand.Next(2) == 0) player.statLife--;
+				if(Main.rand.Next(3) == 0) player.statLife--;
 				if (player.statLife <= 0) player.statLife = 0;
 			}
 		}

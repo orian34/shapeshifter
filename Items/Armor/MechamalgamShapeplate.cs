@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mechamalgam Shapeplate");
-			Tooltip.SetDefault("Increases your minions and building potential if powered");
+			Tooltip.SetDefault("Increases your minions and building potential if powered \n[c/8E8E8E:2/3 Mechamalgam Set Piece]");
 		}
 		public override void SetDefaults()
 		{

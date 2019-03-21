@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mechamalgam Shapemask");
-			Tooltip.SetDefault("'This mask is full of potential.' \nIncreases your ranged potential if powered");
+			Tooltip.SetDefault("'This mask is full of potential.' \nIncreases your ranged potential if powered \n[c/8E8E8E:1/3 Mechamalgam Set Piece]");
 		}
 		public override void SetDefaults()
 		{

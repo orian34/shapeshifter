@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Skeletron Shapeplate");
-			Tooltip.SetDefault("33% chance to not consume throwing item");
+			Tooltip.SetDefault("33% chance to not consume throwing item \n[c/C0AE90:2/3 Skeletron Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -23,13 +23,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.npcTypeNoAggro[32] = true;
-			player.npcTypeNoAggro[34] = true;
-			player.npcTypeNoAggro[83] = true;
-			player.npcTypeNoAggro[84] = true;
-			player.npcTypeNoAggro[179] = true;
 			player.thrownCost33 = true;
-
 		}
 		public override void AddRecipes()
 		{

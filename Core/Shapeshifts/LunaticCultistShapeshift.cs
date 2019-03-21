@@ -46,13 +46,13 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.buffImmune[BuffID.Confused] = true;
 			player.magicDamage += 1.3f;
 			player.manaCost /= 3f;
 		}
 
 		public override void PostUpdateBuffs()
 		{
+			player.buffImmune[BuffID.Confused] = true;
 			if (player.ownedProjectileCounts[mod.ProjectileType("PrimordialMissile")] > 0)
 			{
 				if(!magicFocus)

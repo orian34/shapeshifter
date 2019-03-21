@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Eater of Worlds Shapeplate");
-			Tooltip.SetDefault("Reduces damage taken by 18% \n[c/003300:2/3 Eater of Worlds Set Piece]");
+			Tooltip.SetDefault("Reduces damage taken by 18% \n[c/127C12:2/3 Eater of Worlds Set Piece]");
 		}
 		public override void SetDefaults()
 		{

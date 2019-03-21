@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Lunatic Cultist Shaperobe");
-			Tooltip.SetDefault("Greatly increases your mana pool. \n[c/4C9900:2/2 Lunatic Set Piece]");
+			Tooltip.SetDefault("Greatly increases your mana pool. \n[c/4A1FA1:2/2 Lunatic Set Piece]");
 		}
 		public override void SetDefaults()
 		{

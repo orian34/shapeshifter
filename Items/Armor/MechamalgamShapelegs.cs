@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mechamalgam Shapelegs");
-			Tooltip.SetDefault("Improved movement speed potential if powered");
+			Tooltip.SetDefault("Improved movement speed potential if powered \n[c/8E8E8E:3/3 Mechamalgam Set Piece]");
 		}
 		public override void SetDefaults()
 		{

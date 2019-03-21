@@ -15,19 +15,28 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Wall of Flesh";
 		public override string ShapeshiftName => "Wall of Flesh Shapeshift";
-		public override string ShapeDesc => "The more enemies and the closer they are, the more powerful your abilities are, especially melee. But that strength comes at a price : it also weakens your health and nullifies most ways to heal. Melee attacks drains health, close combat weapon drains more health than projectiles.";
+		public override string ShapeDesc => "Enemies make you hungry, and you'll need to feed off by fighting in close combat. Most ways of healing are rendered moot besides feeding, you can lower the hunger by eating normal food, but it's not enough to fully satiate you.";
 
+		public float hitCount;
+		public float Fedness;
+		
 		public override void Activate()
 		{
+			hitCount = 3f;
+			Fedness = 0f;
 		}
 
 		public override void Deactivate()
 		{
+			hitCount = 0f;
+			Fedness = 0f;
 		}
 
 		public override void PreUpdateBuffs()
 		{
 			player.potionDelay = 2;
+			player.killClothier = true;
+			player.killGuide = true;
 			player.npcTypeNoAggro[115] = true;
 			player.npcTypeNoAggro[116] = true;
 			player.npcTypeNoAggro[117] = true;
@@ -37,75 +46,74 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PostUpdateBuffs()
 		{
+			double l = player.statLifeMax2*1.45f;
+			player.statLifeMax2 += (int)l;
+			if(player.lifeRegenTime > 0)
+			{
+				player.lifeRegenTime = 0;
+			}
+			if(player.lifeRegen > 0)
+			{
+				player.lifeRegen = 0;
+			}
+			if(player.lifeRegenCount > 0)
+			{
+				player.lifeRegenCount = 0;
+			}
 			float hungerCount = 0f;
 			float hungerDist = 0f;
 			float hungerCoef = 0f;
 			float y = 0f;
 			float x = 0f;
-			for(int i = 0; i < 140; i++)
+			for(int i = 0; i < 200; i++)
 			{
 			   NPC target = Main.npc[i];
-			   if(!target.friendly && target.active)
+			   if(target.CanBeChasedBy())
 			   {
 				   float lookToX = target.position.X + (float)target.width * 0.5f - player.Center.X;
 				   float lookToY = target.position.Y - player.Center.Y;
 				   float distance = (float)System.Math.Sqrt((double)(lookToX * lookToX + lookToY * lookToY));
-				   if(distance < 571f && !target.friendly && target.active)
+				   if(distance < 471f)
 				   {
 					   hungerCount += 1f;
 					   hungerDist += distance;
 				   }
 			   }
 			}
-			if(hungerDist > 0)
+			if(hungerCount > 0)
 			{
-				hungerCoef = (hungerDist/hungerCount)/570;
+				hungerCoef = (hungerDist/hungerCount)/470;
 				y = hungerCount*0.01f;
 				x = 1f-hungerCoef;
-				player.meleeSpeed += x*0.47f+y;
-				player.meleeDamage += x*0.51f+y;
-				player.thrownDamage -= x*0.47f+y;
-				player.rangedDamage -= x*0.47f+y;
-				player.magicDamage -= x*0.47f+y;
-				player.minionDamage -= x*0.47f+y;
-				player.moveSpeed += x*0.76f+y;
-				if(player.lifeRegenTime > 0)
-				{
-					player.lifeRegenTime = 0;
-				}
-				if(player.lifeRegen > 0)
-				{
-					player.lifeRegen = 0;
-				}
-				if(player.lifeRegenCount > 0)
-				{
-					player.lifeRegenCount = 0;
-				}
-				player.lifeRegen -= (int)(x*55f)+(int)(y*250f);
+				player.meleeSpeed += x*0.17f+y;
+				player.meleeDamage += x*0.21f+y;
+				player.moveSpeed += x*0.46f+y;
 				if (Main.rand.Next(400) <= (int)(x*5f+y*25f))
 				{
 					Main.PlaySound(29, player.position, Main.rand.Next(24, 26));
 				}
 			}
+			if(hitCount > 8) {hitCount = 8;}
+			float h = 0.002f;
+			int index = player.FindBuffIndex(BuffID.WellFed);
+			if (index != -1 && player.buffTime[index] > 9){h=0f;}
+			hitCount -= h+x*0.05f+y*0.3f;
+			if(hitCount < -8) {hitCount = -8;}
+			if(hitCount > 0)
+			{
+				if(index < 0) {player.AddBuff(BuffID.WellFed, 2, false);}
+				Fedness += hitCount*0.02f;
+				player.statLife += (int)Fedness;
+				if(Fedness > 1) {Fedness = 0;}
+			}
+			else {player.lifeRegen += (int)hitCount;}
 		}
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
 			if(proj.melee)
 			{
-				double x = 0.012f*damage;
-				int b = (int)x;
-				float c = (float)player.statLifeMax2*0.04f;
-				if(b > (int)c)
-				{
-					b = (int)c;
-				}
-				player.statLife += b;
-				player.HealEffect(b);
-				if (player.statLife > player.statLifeMax2)
-				{
-					player.statLife = player.statLifeMax2;
-				}
+				hitCount += 0.5f;
 			}
 		}
 
@@ -113,25 +121,13 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			if(item.melee)
 			{
-				double x = 0.3f*damage;
-				int b = (int)x;
-				float c = (float)player.statLifeMax2*0.08f;
-				if(b > (int)c)
-				{
-					b = (int)c;
-				}
-				player.statLife += b;
-				player.HealEffect(b);
-				if (player.statLife > player.statLifeMax2)
-				{
-					player.statLife = player.statLifeMax2;
-				}
+				hitCount += 1.2f;
 			}
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			Main.PlaySound(3 , player.position, 1);
+			Main.PlaySound(3 , player.position, 9);
 		}
 	}
 }
