@@ -16,7 +16,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "King Slime";
 		public override string ShapeshiftName => "King Slime Shapeshift";
-		public override string ShapeDesc => "Grants you 2 slimes to fight for you. You can do a power jump if you charge it holding DOWN. Bounce on enemies. Weakness to fire.";
+		public override string ShapeDesc => "Grants you a slime to fight for you. You can do a power jump if you charge by holding DOWN. Bounce on enemies. Weakness to fire.";
 
 		public float slimeJump;
 		public bool slimeFire;
