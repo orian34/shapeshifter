@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Eater of Worlds";
 		public override string ShapeshiftName => "Eater of Worlds Shapeshift";
-		public override string ShapeDesc => "You get a stat boost in melee and ranged, as well as the power to summon small eaters when fighting, but you become very frail and can die easily from repeated hits.";
+		public override string ShapeDesc => "You get a stat boost in melee and summoning, as well as the power to summon small eaters when fighting, but you can't summon as much normal minions. Weakness to repeated hits.";
 
 		public override void Activate()
 		{
@@ -37,8 +37,8 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[100] = true;
 			player.meleeSpeed += 0.1f;
 			player.meleeDamage += 0.1f;
-			player.rangedDamage += 0.15f;
-			player.rangedCrit += 12;
+			player.minionDamage += 0.4f;
+			player.maxMinions -= 3; 
 		}
 
 		public override void PostUpdateBuffs()
@@ -49,7 +49,7 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void OnHitAnything(float x, float y, Entity victim)
 		{
-			int dmg = (int)(15f*player.rangedDamage);
+			int dmg = (int)(14f*player.minionDamage);
 			if(Main.rand.Next(8) == 0)
 			{
 				int newProj = Projectile.NewProjectile(x, y, 0.1f, 0.1f, ProjectileID.EatersBite, dmg, 0, Main.myPlayer);
@@ -59,7 +59,7 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			double x = 0.12f*player.statLifeMax2;
+			double x = 0.14f*player.statLifeMax2;
 			int b = (int)x;
 			player.statLife -= b;
 			Main.PlaySound(4 , player.position, 1);

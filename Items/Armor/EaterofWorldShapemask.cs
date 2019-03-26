@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Eater of Worlds Shapemask");
-			Tooltip.SetDefault("'This mask is full of corruption.' \n6% increased ranged damage \n[c/127C12:1/3 Eater of Worlds Set Piece]");
+			Tooltip.SetDefault("'This mask is full of corruption.' \n6% increased summoning damage \n[c/127C12:1/3 Eater of Worlds Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -29,7 +29,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.rangedDamage += 0.06f;
+			player.minionDamage += 0.06f;
 		}
 		public override void UpdateArmorSet(Player player)
 		{

@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera Shapemask");
-			Tooltip.SetDefault("'This mask is slowly growing.' \n7% Increased minions damage and knockback");
+			Tooltip.SetDefault("'This mask is slowly growing.' \n7% Increased ranged damage \n[c/FF33FF:1/3 Plantera Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -29,8 +29,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.minionDamage += 0.07f;
-			player.minionKB += 0.07f;
+			player.rangedDamage += 0.07f;
 		}
 		public override void UpdateArmorSet(Player player)
 		{
@@ -41,7 +40,7 @@ namespace Shapeshifter.Items.Armor
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.PlanteraMask);
-			recipe.AddIngredient(ItemID.ChlorophyteBar,12);
+			recipe.AddIngredient(ItemID.ChlorophyteBar,6);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

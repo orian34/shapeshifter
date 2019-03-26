@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Plantera";
 		public override string ShapeshiftName => "Plantera Shapeshift";
-		public override string ShapeDesc => "You alternate between sleeping and awakened state. When sleeping, you are incredibly tough but deal very little damage, and when you are awakened, you get increased stats including melee and minion damage.";
+		public override string ShapeDesc => "You alternate between sleeping and awakened state. When sleeping, you are incredibly tough but deal very little damage, and when you are awakened, you get increased offensive abilities including melee and ranged damage. Weaknesses of a plant.";
 
 		public float bloomingTimer;
 		public float witherTimer;
@@ -49,7 +49,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[263] = true;
 			player.npcTypeNoAggro[264] = true;
 			player.npcTypeNoAggro[265] = true;
-			awakening = false;
+			player.fishingSkill += 25;
 		}
 
 		public override void PostUpdateBuffs()
@@ -59,6 +59,10 @@ namespace Shapeshifter.Core.Shapeshifts
 				if(Main.rand.Next(11) == 0)
 				{
 					player.statLife -= 1;
+				}
+				if (player.statLife <= 0)
+				{
+					player.statLife = 0;
 				}
 				player.endurance -= 0.4f;
 			}
@@ -70,10 +74,14 @@ namespace Shapeshifter.Core.Shapeshifts
 				bloomingTimer -= 2f;
 				player.statDefense += 12;
 				player.lifeRegen += 6;
-				player.moveSpeed -= 0.15f;
+				player.moveSpeed -= 0.2f;
 				player.meleeSpeed -= 0.7f;
-				player.meleeDamage -= 0.3f;
-				player.minionDamage -= 0.25f;
+				player.meleeDamage -= 0.75f;
+				player.thrownDamage -= 0.75f;
+				player.rangedDamage -= 0.75f;
+				player.minionDamage -= 0.75f;
+				player.magicDamage -= 0.75f;
+				player.maxMinions -= 6; 
 				if(bloomingTimer > 0 && (player.ZoneOverworldHeight && Main.tile[x,y].wall == 0 && Main.dayTime || player.ZoneJungle))
 				{
 					bloomingTimer -= 2f;
@@ -99,7 +107,7 @@ namespace Shapeshifter.Core.Shapeshifts
 				player.moveSpeed += 0.1f;
 				player.meleeSpeed += 0.15f;
 				player.meleeDamage += 0.1f;
-				player.minionDamage += 0.08f;
+				player.rangedDamage += 0.08f;
 				if(witherTimer > 0 && (!player.ZoneOverworldHeight || Main.tile[x,y].wall > 0 || !Main.dayTime)&& !player.ZoneJungle)
 				{
 					witherTimer -= 2f;
@@ -109,7 +117,7 @@ namespace Shapeshifter.Core.Shapeshifts
 					player.moveSpeed += 0.2f;
 					player.meleeSpeed += 0.2f;
 					player.meleeDamage += 0.2f;
-					player.minionDamage += 0.12f;
+					player.rangedDamage += 0.12f;
 					player.dryadWard = true;
 					if (player.thorns < 1f)
 					{
@@ -127,7 +135,7 @@ namespace Shapeshifter.Core.Shapeshifts
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
-			if(awakened && (proj.minion || proj.melee))
+			if(awakened && (proj.ranged || proj.melee))
 			{
 				if(Main.rand.Next(9) == 0)
 				{
@@ -154,12 +162,13 @@ namespace Shapeshifter.Core.Shapeshifts
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			Main.PlaySound(3 , player.position, 1);
-			if(awakened)
+			if(sleeping)
 			{
-				for (int i = 0; i < 7; i++)
+				for (int i = 0; i < 5; i++)
 				{
 					int r = (int)Main.rand.Next(567,572);
-					Projectile.NewProjectile(player.position.X+Main.rand.Next(-16,17), player.position.Y+Main.rand.Next(-32,33), 0f, 0f, r, 99, 0, Main.myPlayer);
+					int dmg = (int)Main.rand.Next(70,101);
+					Projectile.NewProjectile(player.position.X+Main.rand.Next(-16,17), player.position.Y+Main.rand.Next(-32,33), 0f, 0f, r, dmg, 0, Main.myPlayer);
 				}
 			}
 		}
@@ -173,6 +182,7 @@ namespace Shapeshifter.Core.Shapeshifts
 					int newDust = Dust.NewDust(player.position, player.width + 4, player.height + 4, 3, 0f, -1f, 0, default(Color));
 					Main.dust[newDust].noGravity = true;
 				}
+				awakening = false;
 			}
 			if(awakened)
 			{

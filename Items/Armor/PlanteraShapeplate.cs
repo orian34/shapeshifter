@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera Shapeplate");
-			Tooltip.SetDefault("Summons spores over time that will damage enemies");
+			Tooltip.SetDefault("Summons spores over time that will damage enemies \n[c/FF33FF:2/3 Plantera Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -31,7 +31,7 @@ namespace Shapeshifter.Items.Armor
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.SporeSac);
-			recipe.AddIngredient(ItemID.ChlorophyteBar,24);
+			recipe.AddIngredient(ItemID.ChlorophyteBar,10);
 			recipe.AddIngredient(ItemID.JungleSpores,9);
 			recipe.AddIngredient(ItemID.Vine,5);
 			recipe.AddTile(TileID.MythrilAnvil);

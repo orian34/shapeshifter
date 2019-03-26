@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera Shapelegs");
-			Tooltip.SetDefault("4% increased melee damage and critical strike chance");
+			Tooltip.SetDefault("4% increased melee damage and critical strike chance \n[c/FF33FF:3/3 Plantera Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -29,7 +29,7 @@ namespace Shapeshifter.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.ChlorophyteBar,18);
+			recipe.AddIngredient(ItemID.ChlorophyteBar,8);
 			recipe.AddIngredient(ItemID.JungleSpores,7);
 			recipe.AddIngredient(ItemID.Vine,4);
 			recipe.AddTile(TileID.MythrilAnvil);

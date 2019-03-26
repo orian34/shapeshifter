@@ -85,6 +85,7 @@ namespace Shapeshifter.Core.Shapeshifts
 				if (player.statLife <= 0)
 				{
 					player.statLife = 0;
+					Main.PlaySound(4 , player.position, 14);
 					player.KillMe(PlayerDeathReason.ByCustomReason("Hydrolic Surcharge! System Shut Down."), 10.0, 0, false);
 				}
 				if (Main.rand.Next(120) == 0)
