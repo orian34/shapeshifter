@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Golem Shapelegs");
-			Tooltip.SetDefault("6% increased melee damage and critical strike chance");
+			Tooltip.SetDefault("6% increased melee damage and critical strike chance \n[c/F6D013:3/3 Golem Set Piece]");
 		}
 		public override void SetDefaults()
 		{

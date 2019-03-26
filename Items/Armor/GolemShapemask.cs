@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Golem Shapemask");
-			Tooltip.SetDefault("'This mask is quietly humming.' \n7% Increased magic damage and improved mana regeneration");
+			Tooltip.SetDefault("'This mask is quietly humming.' \n7% Increased magic damage and improved mana regeneration \n[c/F6D013:1/3 Golem Set Piece]");
 		}
 		public override void SetDefaults()
 		{

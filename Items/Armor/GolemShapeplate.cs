@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Golem Shapeplate");
-			Tooltip.SetDefault("Greatly increases life regen when not moving");
+			Tooltip.SetDefault("Greatly increases life regen when not moving \n[c/F6D013:2/3 Golem Set Piece]");
 		}
 		public override void SetDefaults()
 		{
