@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Moon Lord Shapemask");
-			Tooltip.SetDefault("'This mask transcends your mind.' \n30% Increased ranged critical chance. Improved vision.");
+			Tooltip.SetDefault("'This mask transcends your mind.' \n15% Increased ranged critical chance. Improved vision. \n[c/99FFCC:1/3 Moon Lord Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -29,7 +29,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.rangedCrit += 30;
+			player.rangedCrit += 15;
 			player.findTreasure = true;
 			player.nightVision = true;
 			player.detectCreature = true;

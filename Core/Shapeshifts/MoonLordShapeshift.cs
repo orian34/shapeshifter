@@ -27,13 +27,12 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.minionDamage += 0.7f;
-			player.thrownDamage += 0.7f;
+			player.minionDamage += 0.3f;
+			player.thrownDamage += 0.3f;
 			player.magicDamage -= 0.7f;
-			player.meleeDamage += 0.7f;
-			player.rangedDamage += 0.7f;
-			player.endurance += 0.5f;
-			player.releaseJump = true;
+			player.meleeDamage += 0.3f;
+			player.rangedDamage += 0.3f;
+			player.endurance += 0.2f;
 		}
 
 		public override void PostUpdateBuffs()
@@ -42,10 +41,96 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.buffImmune[BuffID.Confused] = true;
 			player.buffImmune[BuffID.Slow] = true;
 			player.buffImmune[BuffID.Weak] = true;
-			if(player.velocity.X != 0 && player.velocity.Y > 0 && !player.controlDown)
+			player.buffImmune[BuffID.Gravitation] = true;
+			player.buffImmune[BuffID.VortexDebuff] = true;
+			player.gravity = 0;
+			player.canCarpet = false;
+			player.rocketTime = 0;
+			player.wingTime = 0f;
+			player.maxRunSpeed = 10f;
+			player.maxFallSpeed = 20f;
+			if (player.controlUp || player.controlJump)
 			{
-				player.velocity.Y = 0;
+				if (player.velocity.Y > 0f)
+				{
+					player.velocity.Y = 0f;
+				}
+				if (player.velocity.Y < -10f)
+				{
+					player.velocity.Y -= 0.03f;
+				}
+				else{player.velocity.Y -= 0.5f;}
 			}
+			else if (player.controlDown)
+			{
+				if (player.velocity.Y < 0f)
+				{
+					player.velocity.Y = 0f;
+				}
+				if (player.velocity.Y > 10f)
+				{
+					player.velocity.Y += 0.03f;
+				}
+				else{player.velocity.Y += 0.5f;}
+			}
+			else
+			{
+				player.velocity.Y = 0f;
+			}
+			if (player.controlLeft && !player.controlRight)
+			{
+				if (player.velocity.X > 0f)
+				{
+					player.velocity.X = 0f;
+				}
+				if (player.velocity.X < -10f)
+				{
+					player.velocity.X -= 0.03f;
+				}
+				else{player.velocity.X -= 0.5f;}
+			}
+			else if (player.controlRight && !player.controlLeft)
+			{
+				if (player.velocity.X < 0f)
+				{
+					player.velocity.X = 0f;
+				}
+				if (player.velocity.X > 10f)
+				{
+					player.velocity.X += 0.03f;
+				}
+				else{player.velocity.X += 0.5f;}
+			}
+			else
+			{
+				player.velocity.X = 0f;
+			}
+		}
+
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+		{
+			if(proj.type == mod.ProjectileType("MoonEye"))
+			{
+				int b = (int)(damage*0.04f);
+				float c = (float)player.statLifeMax2*0.05f;
+				if(b > (int)c)
+				{
+					b = (int)c;
+				}
+				player.statLife += b;
+				player.HealEffect(b);
+				if (player.statLife > player.statLifeMax2)
+				{
+					player.statLife = player.statLifeMax2;
+				}
+			}
+		}
+
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			playSound = false;
+			return true;
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)

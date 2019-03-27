@@ -15,18 +15,21 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Duke Fishron";
 		public override string ShapeshiftName => "Duke Fishron Shapeshift";
-		public override string ShapeDesc => "You can only breathe correctly if you are in water, but rain can do the job as well. Sharknados come to your aid and you spit bubbles when you use minions or throwing weapons.";
+		public override string ShapeDesc => "You can only breathe correctly if you are in water, but rain can do the job as well. Sharknados come to your aid and you spit bubbles when you use minions or throwing weapons. Weakness to thunder.";
 
 		public float dukeBreath;
+		public float choking;
 
 		public override void Activate()
 		{
 			dukeBreath = 1000f;
+			choking = 0f;
 		}
 
 		public override void Deactivate()
 		{
-			dukeBreath = 1000f;
+			dukeBreath = 2000f;
+			choking = 0f;
 		}
 
 		public override void PreUpdateBuffs()
@@ -41,65 +44,74 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[170] = true;
 			player.npcTypeNoAggro[171] = true;
 			player.npcTypeNoAggro[180] = true;
-			player.maxMinions += 5;
+			player.maxMinions += 4;
 		}
 
 		public override void PostUpdateBuffs()
 		{
-			if (player.ownedProjectileCounts[ProjectileID.Tempest] < 3)
+			player.buffImmune[BuffID.Chilled] = true;
+			if (player.FindBuffIndex(BuffID.Electrified) != -1)	
 			{
-				int d = (int)(player.minionDamage*75);
-				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, ProjectileID.Tempest, d, 0, Main.myPlayer);
+				if(Main.rand.Next(2) == 0)
+				{
+					player.statLife -= 1;
+				}
+				if (player.statLife <= 0)
+				{
+					player.statLife = 0;
+				}
+			}
+			if (player.ownedProjectileCounts[ProjectileID.Tempest] < 2)
+			{
+				int dmg = (int)(player.minionDamage*75);
+				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, ProjectileID.Tempest, dmg, 0, Main.myPlayer);
 			}
 			if (player.ownedProjectileCounts[ProjectileID.Tempest] > 0)
             {
                 player.sharknadoMinion = true;
             }
-			if(!player.wet && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight))
+			if(!player.wet && !player.dripping && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight))
 			{
 				dukeBreath--;
-				if(dukeBreath <= 0)
+				if(dukeBreath < 1)
 				{
 					dukeBreath = 0f;
 					player.lifeRegenTime = 0;
-					player.magicDamage -= 0.35f;
+					player.meleeSpeed -= 0.3f;
+					player.moveSpeed -= 0.3f;
 					player.meleeDamage -= 0.35f;
+					player.thrownDamage -= 0.35f;
 					player.rangedDamage -= 0.35f;
-					if(Main.rand.Next(2) == 0)
-					{
-						player.statLife--;
-					}
+					player.magicDamage -= 0.35f;
+					player.minionDamage -= 0.35f;
+					choking += 0.02f;
+					player.statLife -= (int)choking;
+					if(choking > 1) {choking = 0;}
 					if (player.statLife <= 0)
 					{
 						player.statLife = 0;
 						player.KillMe(PlayerDeathReason.ByCustomReason("Death by asphyxia"), 10.0, 0, false);
 					}
-					if (Main.rand.Next(120) == 0)
+					if (Main.rand.Next(160) == 0)
 					{
 						Main.PlaySound(3, player.position, 14);
 					}
 				}
 				else
 				{
-					player.thrownDamage += 0.20f;
-					player.minionDamage += 0.25f;
+					player.thrownDamage += 0.1f;
+					player.minionDamage += 0.15f;
 				}
 			}
 			else
 			{
-				dukeBreath += 3f;
-				player.thrownDamage += 0.40f;
-				player.minionDamage += 0.55f;
-				if(dukeBreath > 1000)
+				dukeBreath += 7f;
+				player.thrownDamage += 0.3f;
+				player.minionDamage += 0.4f;
+				if(dukeBreath > 2000)
 				{
-					dukeBreath = 1000f;
+					dukeBreath = 2000f;
 				}
-				player.breath += 3;
-				if (player.breath > player.breathMax)
-				{
-					player.breath = player.breathMax;
-				}
-				player.breathCD = 0;
 			}
 		}
 		
@@ -107,14 +119,22 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			if((proj.minion || proj.thrown || proj.type == 408) && proj.type != mod.ProjectileType("DukeBubble"))
 			{
-				int j = (int)(player.thrownDamage*71f);
-				Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-15, mod.ProjectileType("DukeBubble"), j, 0, Main.myPlayer);
+				int dmg = (int)(player.thrownDamage*71f);
+				Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target.position))*-15, mod.ProjectileType("DukeBubble"), dmg, 0, Main.myPlayer);
 			}
+		}
+
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			playSound = false;
+			return true;
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			Main.PlaySound(4 , player.position, 17);
+			int r = (int)Main.rand.Next(39,41);
+			Main.PlaySound(29 , player.position, r);
 		}
 	}
 }

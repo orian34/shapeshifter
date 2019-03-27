@@ -92,6 +92,15 @@ namespace Shapeshifter.Core
 			Shapeshift?.OnHitAnything(x, y, victim);
 		}
 		
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			return Shapeshift?.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit,
+			ref customDamage, ref playSound, ref genGore, ref damageSource)
+				   ?? base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit,
+			ref customDamage, ref playSound, ref genGore, ref damageSource);
+		}
+		
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			Shapeshift?.Hurt(pvp, quiet, damage, hitDirection, crit);

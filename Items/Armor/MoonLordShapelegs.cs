@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Moon Lord Shapelegs");
-			Tooltip.SetDefault("40% increased melee speed and movement. Grants the control of gravity.");
+			Tooltip.SetDefault("30% increased melee speed and movement. Gravity has trouble affecting you. \n[c/99FFCC:3/3 Moon Lord Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -23,10 +23,9 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.meleeSpeed += 0.4f;
-			player.moveSpeed += 0.4f;
+			player.meleeSpeed += 0.3f;
+			player.moveSpeed += 0.3f;
 			Player.jumpHeight = 20;
-			player.gravControl = true;
 			player.noFallDmg = true;
 		}
 		public override void AddRecipes()

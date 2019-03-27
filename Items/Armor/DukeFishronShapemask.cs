@@ -13,7 +13,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Duke Fishron Shapemask");
-			Tooltip.SetDefault("'This mask is smelling fishy.' \n7% Increased minion damage and reduced knockback");
+			Tooltip.SetDefault("'This mask is smelling fishy.' \n7% Increased minion damage and reduced knockback \n[c/00FFFF:1/3 Duke Fishron Set Piece]");
 		}
 		public override void SetDefaults()
 		{

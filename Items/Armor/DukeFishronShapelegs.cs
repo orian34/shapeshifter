@@ -11,7 +11,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Duke Fishron Shapelegs");
-			Tooltip.SetDefault("6% increased throwing damage and critical strike chance");
+			Tooltip.SetDefault("6% increased throwing damage and critical strike chance \n[c/00FFFF:3/3 Duke Fishron Set Piece]");
 		}
 		public override void SetDefaults()
 		{
