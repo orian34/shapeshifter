@@ -142,22 +142,6 @@ namespace Shapeshifter
 				int leng = 333;
 				target.AddBuff(mod.BuffType("Overgenerous"), leng, false);
 			}
-			if(proj.type == mod.ProjectileType("MoonEye"))
-			{
-				double x = 0.07f*damage;
-				int b = (int)x;
-				float c = (float)player.statLifeMax2*0.08f;
-				if(b > (int)c)
-				{
-					b = (int)c;
-				}
-				player.statLife += b;
-				player.HealEffect(b);
-				if (player.statLife > player.statLifeMax2)
-				{
-					player.statLife = player.statLifeMax2;
-				}
-			}
 		}
 		public override void OnHitNPC (Item item, NPC target, int damage, float knockback, bool crit)
 		{
