@@ -19,17 +19,23 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public float dukeBreath;
 		public float choking;
+		public bool refill;
+		public bool filled;
 
 		public override void Activate()
 		{
 			dukeBreath = 1000f;
 			choking = 0f;
+			refill = false;
+			filled = false;
 		}
 
 		public override void Deactivate()
 		{
 			dukeBreath = 2000f;
 			choking = 0f;
+			refill = false;
+			filled = false;
 		}
 
 		public override void PreUpdateBuffs()
@@ -111,7 +117,13 @@ namespace Shapeshifter.Core.Shapeshifts
 				if(dukeBreath > 2000)
 				{
 					dukeBreath = 2000f;
+					if(!refill)
+					{
+						refill = true;
+						filled = true;
+					}
 				}
+				else {refill = false;}
 			}
 		}
 		
@@ -135,6 +147,19 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			int r = (int)Main.rand.Next(39,41);
 			Main.PlaySound(29 , player.position, r);
+		}
+		
+		public override void FrameEffects()
+		{
+			if(filled)
+			{
+				for (int i = 0; i < 20; i++)
+				{
+					int newDust = Dust.NewDust(player.position, player.width + 4, player.height + 4, 34, 0f, -1f, 0, default(Color));
+				}
+				Main.PlaySound(29 , player.position, 20);
+				filled = false;
+			}
 		}
 	}
 }

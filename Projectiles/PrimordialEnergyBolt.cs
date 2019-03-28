@@ -31,6 +31,11 @@ namespace Shapeshifter.Projectiles
 			projectile.height = 10;
 			projectile.penetrate = -1;
 		}
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit,
+			ref int hitDirection) 
+		{
+			target.AddBuff(mod.BuffType<Buffs.Overgenerous>(), 333);
+		}
 		public override void AI()
 		{
 			projectile.rotation += 0.3f;

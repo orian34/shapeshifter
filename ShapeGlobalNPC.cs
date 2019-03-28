@@ -31,7 +31,7 @@ namespace Shapeshifter
 					{
 						npc.lifeRegen = 0;
 					}
-					int loss = (int)(npc.lifeMax/850);
+					int loss = (int)((npc.lifeMax/850)*0.77f);
 					npc.life -= loss;	
 					if(npc.life < 0)
 					{

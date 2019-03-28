@@ -90,7 +90,8 @@ namespace Shapeshifter.Core.Shapeshifts
 				if(aiming)
 				{
 					NPC target2 = Main.npc[closest];
-					Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position - target2.position)) * -8, mod.ProjectileType("GolemLaser"), 400, 0, Main.myPlayer);
+					int newProj = Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position - target2.position)) * -8, mod.ProjectileType("GolemLaser"), 400, 0, Main.myPlayer);
+					Main.projectile[newProj].timeLeft = 600;
 					laserTimer = 600f;
 				}
 			}
@@ -107,6 +108,13 @@ namespace Shapeshifter.Core.Shapeshifts
 				return false;
 			}
 
+			return true;
+		}
+
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			playSound = false;
 			return true;
 		}
 

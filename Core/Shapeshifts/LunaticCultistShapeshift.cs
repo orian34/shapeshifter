@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Lunatic Cultist";
 		public override string ShapeshiftName => "Lunatic Cultist Shapeshift";
-		public override string ShapeDesc => "Using a catalyst, you can use the primordial principles of each essences of magic. Each one is a very potent magic that will allow you to bend the world at your will.";
+		public override string ShapeDesc => "Using a catalyst, you can use the primordial principles of each essences of magic. Each one is a very potent magic that will allow you to bend the world laws.";
 
 		public bool magicFocus;
 		public bool primeFire;
@@ -46,7 +46,7 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.magicDamage += 1.3f;
+			player.magicDamage += 0.7f;
 			player.manaCost /= 3f;
 		}
 

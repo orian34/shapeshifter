@@ -116,32 +116,9 @@ namespace Shapeshifter
 		
 		public void UpdateLifeRegen2()
 		{
-			for(int i = 0; i < 200; i++)
-			{
-			   NPC target = Main.npc[i];
-			   if(target.active && target.GetGlobalNPC<ShapeGlobalNPC>(mod).overgenerous)
-			   {
-				   float lookToX = target.position.X + (float)target.width * 0.5f - player.position.X;
-				   float lookToY = target.position.Y - player.position.Y;
-				   float distance = (float)System.Math.Sqrt((double)(lookToX * lookToX + lookToY * lookToY));
-				   if(distance < 222f)
-				   {
-					   player.statLife += 1;
-					   if (player.statLife > player.statLifeMax2)
-						{
-							player.statLife = player.statLifeMax2;
-						}
-				   }
-			   }
-			}
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
-			if(proj.type == mod.ProjectileType("PrimordialEnergyBolt"))
-			{
-				int leng = 333;
-				target.AddBuff(mod.BuffType("Overgenerous"), leng, false);
-			}
 		}
 		public override void OnHitNPC (Item item, NPC target, int damage, float knockback, bool crit)
 		{
@@ -156,7 +133,7 @@ namespace Shapeshifter
 		{
 			if(player.ownedProjectileCounts[mod.ProjectileType("PrimordialShield")] > 0)
 			{
-				if(Main.rand.Next(4) == 0)
+				if(Main.rand.Next(14) == 0)
 				{
 					Main.PlaySound(2 , player.position, 48);
 				}

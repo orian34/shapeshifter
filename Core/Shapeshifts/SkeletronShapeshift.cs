@@ -140,6 +140,13 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 		}
 
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			playSound = false;
+			return true;
+		}
+
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			Main.PlaySound(SoundID.NPCHit2 , player.position);
