@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Skeletron";
 		public override string ShapeshiftName => "Skeletron Shapeshift";
-		public override string ShapeDesc => "Curses you during the night. The more wounded you are, the more the curse will leak. Increases your throwing and magic power, you also summon skulls and can inflict various debuffs by using your curse.";
+		public override string ShapeDesc => "Curses you during the night. The more wounded you are, the more the curse will leak. Increases your throwing and magic power, you also summon skulls and can inflict various debuffs by using your curse. Weakness to day time.";
 
 		public bool skeletronCursed;
 

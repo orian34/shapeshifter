@@ -16,7 +16,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Queen Bee";
 		public override string ShapeshiftName => "Queen Bee Shapeshift";
-		public override string ShapeDesc => "The more bees you have, the more powerful you get in ranged and throwing. You can produce bees by fighting, not moving creates more bees.";
+		public override string ShapeDesc => "The more bees you have, the more powerful you get in ranged and throwing. You can produce bees by fighting, not moving creates more bees. Weakness to attacks.";
 
 		public bool queenSwarm;
 
@@ -62,7 +62,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.manaCost += z*10f;
 			///player.lifeRegenTime += h;
 			///player.lifeRegen += h;
-			if(z>0.2f)
+			if(z>0.075f)
 			{
 				player.lifeMagnet = true;
 				player.strongBees = true;
