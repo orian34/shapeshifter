@@ -89,7 +89,7 @@ namespace Shapeshifter.Core.Shapeshifts
 						target.AddBuff(BuffID.Poisoned, 420, true);
 					}
 				}
-				if(proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && proj.type != ProjectileID.Hornet)
+				if(proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee)
 				{
 					int num18 = 1;
 					int dmg = (int)(7f*player.thrownDamage);

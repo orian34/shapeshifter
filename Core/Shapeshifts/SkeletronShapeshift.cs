@@ -42,9 +42,9 @@ namespace Shapeshifter.Core.Shapeshifts
 			if(!Main.dayTime)
 			{
 				skeletronCursed = true;
-				player.thrownDamage += 0.06f;
-				player.magicDamage += 0.06f;
-				player.thrownCrit += 5;
+				player.thrownDamage += 0.13f;
+				player.magicDamage += 0.13f;
+				player.thrownCrit += 15;
 			}
 			else 
 			{ 
@@ -72,7 +72,7 @@ namespace Shapeshifter.Core.Shapeshifts
 				int num = (int)(((double)player.statLife/(double)player.statLifeMax2) * 120f+8);
 				if(Main.rand.Next(num) == 0)
 				{
-					int dmg = (int)(50f*player.magicDamage);
+					int dmg = (int)(60f*player.magicDamage);
 					float speedX = (float)Main.rand.Next(-150, 151) * 0.1f;
 					float speedY = (float)Main.rand.Next(-150, 151) * 0.1f;
 					float num92 = (float)Main.rand.Next(10, 80) * 0.001f;
@@ -96,11 +96,11 @@ namespace Shapeshifter.Core.Shapeshifts
 			{
 				if(proj.type == ProjectileID.BoneGloveProj || proj.type == ProjectileID.Bone || proj.type == ProjectileID.Skull || proj.type == ProjectileID.ShadowFlame)
 				{ 
-					if(Main.rand.Next(18) == 0) target.AddBuff(BuffID.ShadowFlame, 156, true);
-					if(Main.rand.Next(18) == 0) target.AddBuff(BuffID.OnFire, 260, true);
-					if(Main.rand.Next(18) == 0) target.AddBuff(BuffID.CursedInferno, 156, true);
-					if(Main.rand.Next(18) == 0) target.AddBuff(BuffID.Frostburn, 260, true);
-					if(Main.rand.Next(18) == 0) target.AddBuff(BuffID.Ichor, 156, true);
+					if(Main.rand.Next(13) == 0) target.AddBuff(BuffID.ShadowFlame, 156, true);
+					if(Main.rand.Next(13) == 0) target.AddBuff(BuffID.OnFire, 260, true);
+					if(Main.rand.Next(13) == 0) target.AddBuff(BuffID.CursedInferno, 156, true);
+					if(Main.rand.Next(13) == 0) target.AddBuff(BuffID.Frostburn, 260, true);
+					if(Main.rand.Next(13) == 0) target.AddBuff(BuffID.Ichor, 156, true);
 				}
 				else if((proj.magic || proj.thrown) && Main.rand.Next(5) == 0)
 				{
@@ -132,7 +132,7 @@ namespace Shapeshifter.Core.Shapeshifts
 					num6 = num3 / num6;
 					num4 *= num6;
 					num5 *= num6;
-					int dmg = (int)(40f*player.thrownDamage);
+					int dmg = (int)(50f*player.thrownDamage);
 					int newProj = Projectile.NewProjectile((float)num, (float)num2, num4, num5, ProjectileID.Skull, dmg, 0, Main.myPlayer);
 					Main.projectile[newProj].tileCollide = false;
 					Main.projectile[newProj].timeLeft = 300;
