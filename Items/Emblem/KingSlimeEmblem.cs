@@ -12,13 +12,13 @@ namespace Shapeshifter.Items.Emblem
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("King Slime Emblem");
-			Tooltip.SetDefault("'This emblem has a slimy feeling.' \nIncreased number of Minions \n8% increased magic and minion damage \n[c/0066CC:King Slime Shape]");
+			Tooltip.SetDefault("'This emblem shows your slime mastery.' \nIncreased number of Minions \n6% increased magic and minion damage \n[c/0066CC:King Slime Shape]");
 		}
 		public override void SetDefaults()
 		{
 			item.width = 24;
 			item.height = 24;
-			item.value = 25600*5;
+			item.value = 45600*5;
 			item.rare = 1;
 			item.defense = 2;
 			item.accessory = true;
@@ -26,8 +26,8 @@ namespace Shapeshifter.Items.Emblem
 		public override void UpdateEquip(Player player)
 		{
 			player.maxMinions++;
-			player.magicDamage += 0.08f;
-			player.minionDamage += 0.08f;
+			player.magicDamage += 0.06f;
+			player.minionDamage += 0.06f;
             player.GetModPlayer<ShapeshifterPlayer>().ActivateShapeshift(typeof(KingSlimeShapeshift));
 		}
 		public override void AddRecipes()

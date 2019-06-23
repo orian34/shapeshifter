@@ -51,6 +51,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[171] = true;
 			player.npcTypeNoAggro[180] = true;
 			player.maxMinions += 4;
+			player.gills = true;
 		}
 
 		public override void PostUpdateBuffs()
@@ -70,13 +71,15 @@ namespace Shapeshifter.Core.Shapeshifts
 			if (player.ownedProjectileCounts[ProjectileID.Tempest] < 2)
 			{
 				int dmg = (int)(player.minionDamage*75);
-				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, ProjectileID.Tempest, dmg, 0, Main.myPlayer);
+				int newProj = Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, ProjectileID.Tempest, dmg, 0, Main.myPlayer);
+				Main.projectile[newProj].usesIDStaticNPCImmunity = true;
+				Main.projectile[newProj].idStaticNPCHitCooldown = 10;
 			}
 			if (player.ownedProjectileCounts[ProjectileID.Tempest] > 0)
             {
                 player.sharknadoMinion = true;
             }
-			if(!player.wet && !player.dripping && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight))
+			if(!player.wet && !player.dripping && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight) && player.armor[0].type != 250)
 			{
 				dukeBreath--;
 				if(dukeBreath < 1)
@@ -151,6 +154,9 @@ namespace Shapeshifter.Core.Shapeshifts
 		
 		public override void FrameEffects()
 		{
+			player.head = mod.GetEquipSlot("DukeFishronShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("DukeFishronShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("DukeFishronShapelegs", EquipType.Legs);
 			if(filled)
 			{
 				for (int i = 0; i < 20; i++)

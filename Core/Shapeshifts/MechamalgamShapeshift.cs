@@ -95,14 +95,13 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 			if(energyCount > 0) 
 			{
-				if(player.velocity.X == 0 && player.velocity.Y == 0) {energyCount -= 50;}
 				energyCount -= 3;
 			}
 			if(energyCount < 0) {energyCount = 0;}
 			if(energyCount > 3000)
 			{
 				charged = true;
-				if(energyCount > 30000) {energyCount = 30000;}
+				if(energyCount > 35000) {energyCount = 35000;}
 				float e = energyCount/1000f;
 				int m = (int)Math.Round(e/5f, 0, MidpointRounding.AwayFromZero);
 				player.maxRunSpeed += e/9f;
@@ -187,6 +186,9 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void FrameEffects()
 		{
+			player.head = mod.GetEquipSlot("MechamalgamShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("MechamalgamShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("MechamalgamShapelegs", EquipType.Legs);
 			if(charged)
 			{
 				Lighting.AddLight(player.Center, 1f, 0f, 0f);

@@ -98,7 +98,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			int index = player.FindBuffIndex(BuffID.WellFed);
 			if (index != -1 && player.buffTime[index] > 9){h=0f;}
 			hitCount -= h+x*0.05f+y*0.3f;
-			if(hitCount < -8) {hitCount = -8;}
+			if(hitCount < -5) {hitCount = -5;}
 			if(hitCount > 0)
 			{
 				if(index < 0) {player.AddBuff(BuffID.WellFed, 2, false);}
@@ -107,13 +107,14 @@ namespace Shapeshifter.Core.Shapeshifts
 				if(Fedness > 1) {Fedness = 0;}
 			}
 			else {player.lifeRegen += (int)hitCount;}
+			if(hitCount < 0) {hitCount += 0.001f;}
 		}
 		
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
 			if(proj.melee)
 			{
-				hitCount += 0.5f;
+				hitCount += 0.7f;
 			}
 		}
 
@@ -121,7 +122,7 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			if(item.melee)
 			{
-				hitCount += 1.2f;
+				hitCount += 2.4f;
 			}
 		}
 
@@ -135,6 +136,13 @@ namespace Shapeshifter.Core.Shapeshifts
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			Main.PlaySound(3 , player.position, 9);
+		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("WallofFleshShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("WallofFleshShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("WallofFleshShapelegs", EquipType.Legs);
 		}
 	}
 }

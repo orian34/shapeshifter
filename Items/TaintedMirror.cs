@@ -30,17 +30,20 @@ namespace Shapeshifter.Items
 		}
 		public override bool UseItem(Player player)
 		{
-			if(player.GetModPlayer<ShapeshifterPlayer>().Shapeshift is Shapeshift)
+			if(player.whoAmI == Main.myPlayer)
 			{
-				string shape = player.GetModPlayer<ShapeshifterPlayer>().Shapeshift.ShapeshiftName;
-				string str = player.GetModPlayer<ShapeshifterPlayer>().Shapeshift.ShapeDesc;
-				Main.NewText( shape, 190, 120, 50, false );
-				Main.NewText( str, 180, 50, 50, false );
-			}
-			else
-			{
-				string str = "There is no movement on the surface of the mirror.";
-				Main.NewText( str, 60, 60, 120, false );
+				if(player.GetModPlayer<ShapeshifterPlayer>().Shapeshift is Shapeshift)
+				{
+					string shape = player.GetModPlayer<ShapeshifterPlayer>().Shapeshift.ShapeshiftName;
+					string str = player.GetModPlayer<ShapeshifterPlayer>().Shapeshift.ShapeDesc;
+					Main.NewText( shape, 190, 120, 50, false );
+					Main.NewText( str, 180, 50, 50, false );
+				}
+				else
+				{
+					string str = "There is no movement on the surface of the mirror.";
+					Main.NewText( str, 60, 60, 120, false );
+				}
 			}
 			return true;
 		}
