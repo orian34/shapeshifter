@@ -69,7 +69,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			if(skeletronCursed)
 			{
 				player.AddBuff(BuffID.WaterCandle, 2, false);
-				int num = (int)(((double)player.statLife/(double)player.statLifeMax2) * 120f+8);
+				int num = (int)(((double)player.statLife/(double)player.statLifeMax2) * 80f+8);
 				if(Main.rand.Next(num) == 0)
 				{
 					int dmg = (int)(60f*player.magicDamage);
@@ -130,8 +130,8 @@ namespace Shapeshifter.Core.Shapeshifts
 					float num5 = target.position.Y - vector.Y;
 					float num6 = (float)Math.Sqrt((double)(num4 * num4 + num5 * num5));
 					num6 = num3 / num6;
-					num4 *= num6;
-					num5 *= num6;
+					num4 *= num6*3f;
+					num5 *= num6*3f;
 					int dmg = (int)(50f*player.thrownDamage);
 					int newProj = Projectile.NewProjectile((float)num, (float)num2, num4, num5, ProjectileID.Skull, dmg, 0, Main.myPlayer);
 					Main.projectile[newProj].tileCollide = false;

@@ -20,7 +20,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Skeletron Shapemask");
-			Tooltip.SetDefault("'This mask is cursed.' \n4% increased throwing damage \n[c/C0AE90:1/3 Skeletron Set Piece]");
+			Tooltip.SetDefault("'This mask is cursed.' \n4% increased magic damage \n[c/C0AE90:1/3 Skeletron Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -36,7 +36,7 @@ namespace Shapeshifter.Items.Armor
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.thrownDamage += 0.04f;
+			player.magicDamage += 0.04f;
 		}
 		public override void UpdateArmorSet(Player player)
 		{

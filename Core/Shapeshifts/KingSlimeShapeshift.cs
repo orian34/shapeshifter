@@ -98,7 +98,9 @@ namespace Shapeshifter.Core.Shapeshifts
 			if (player.ownedProjectileCounts[266] < 1 && player.whoAmI == Main.myPlayer)
 			{
 				int dmg = (int)(7f * player.minionDamage);
-				Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, 266, dmg, 0, player.whoAmI);
+				int newProj = Projectile.NewProjectile(player.position.X, player.position.Y, 0f, 0f, 266, dmg, 0, player.whoAmI);
+				Main.projectile[newProj].usesIDStaticNPCImmunity = true;
+				Main.projectile[newProj].idStaticNPCHitCooldown = 10;
 			}
 			if (player.ownedProjectileCounts[266] > 0)
             {
@@ -107,9 +109,9 @@ namespace Shapeshifter.Core.Shapeshifts
 			if (player.velocity.Y > 0f && !player.mount.Active)
 			  {
 				Rectangle rect = player.getRect();
-				rect.Offset(0, player.height - 1);
+				rect.Offset(-1, player.height - 1);
 				rect.Height =  2;
-				rect.Inflate(8, 3);
+				rect.Inflate(10, 3);
 				for (int i = 0; i < 200; i++)
 				{
 				  NPC target = Main.npc[i];
@@ -146,6 +148,13 @@ namespace Shapeshifter.Core.Shapeshifts
 				if(Main.rand.Next(3) == 0) player.statLife--;
 				if (player.statLife <= 0) player.statLife = 0;
 			}
+		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("KingSlimeShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("KingSlimeShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("KingSlimeShapelegs", EquipType.Legs);
 		}
 
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
