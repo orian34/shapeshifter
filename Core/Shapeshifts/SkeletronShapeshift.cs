@@ -154,9 +154,11 @@ namespace Shapeshifter.Core.Shapeshifts
 		
 		public override void FrameEffects()
 		{
+			player.body = mod.GetEquipSlot("SkeletronShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("SkeletronShapelegs", EquipType.Legs);
 			if(skeletronCursed)
 			{
-				if(player.armor[10].headSlot < 0) {player.head = mod.GetEquipSlot("SkeletronShapemaskCursed", EquipType.Head);}
+				player.head = mod.GetEquipSlot("SkeletronShapemaskCursed", EquipType.Head);
 				Lighting.AddLight(player.position, 0f, 0f, 1f);
 				if(Main.rand.Next(13) == 0)
 				{
@@ -169,6 +171,7 @@ namespace Shapeshifter.Core.Shapeshifts
 					Main.dust[newDust].noGravity = true;
 				}
 			}
+			else {player.head = mod.GetEquipSlot("SkeletronShapemask", EquipType.Head);}
 		}
 	}
 }

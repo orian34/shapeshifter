@@ -42,7 +42,7 @@ namespace Shapeshifter
 			recipeBOC.AddRecipe();
 
 			ModRecipe recipeQB = new ModRecipe(mod);
-			recipeQB.AddIngredient(ItemID.HerbBag);
+			recipeQB.AddIngredient(ItemID.Daybloom, 6);
 			recipeQB.AddIngredient(ItemID.BeeWax, 13);
 			recipeQB.AddIngredient(ItemID.HoneyComb);
 			recipeQB.AddTile(TileID.HoneyDispenser);

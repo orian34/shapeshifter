@@ -182,6 +182,8 @@ namespace Shapeshifter.Core.Shapeshifts
 		
 		public override void FrameEffects()
 		{
+			player.body = mod.GetEquipSlot("PlanteraShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("PlanteraShapelegs", EquipType.Legs);
 			if(awakening)
 			{
 				for (int i = 0; i < 30; i++)
@@ -191,10 +193,8 @@ namespace Shapeshifter.Core.Shapeshifts
 				}
 				awakening = false;
 			}
-			if(awakened)
-			{
-				if(player.armor[10].headSlot < 0) {player.head = mod.GetEquipSlot("PlanteraShapemaskAwakened", EquipType.Head);}
-			}
+			if(awakened) {player.head = mod.GetEquipSlot("PlanteraShapemaskAwakened", EquipType.Head);}
+			else {player.head = mod.GetEquipSlot("PlanteraShapemask", EquipType.Head);}
 		}
 	}
 }

@@ -26,7 +26,7 @@ namespace Shapeshifter.Items.Armor
 		{
 			item.width = 20;
 			item.height = 22;
-			item.value = 152500;
+			item.value = 30500*5;
 			item.rare = 3;
 			item.defense = 5;
 		}

@@ -80,5 +80,12 @@ namespace Shapeshifter.Core.Shapeshifts
 			   }
 		   }
 		}
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("LunaticCultistShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("LunaticCultistShaperobe", EquipType.Body);
+			player.legs = mod.GetEquipSlot("LunaticCultistShaperobe_Legs", EquipType.Legs);
+			player.shoe = 0;
+		}
 	}
 }

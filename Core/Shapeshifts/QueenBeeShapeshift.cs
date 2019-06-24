@@ -65,7 +65,6 @@ namespace Shapeshifter.Core.Shapeshifts
 			if(z>0.075f)
 			{
 				player.lifeMagnet = true;
-				player.strongBees = true;
 				queenSwarm = true;
 			}
 			else 
@@ -151,6 +150,13 @@ namespace Shapeshifter.Core.Shapeshifts
 				float speedY = (float)Main.rand.Next(-35, 36) * 0.02f;
 				Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, player.beeType(), player.beeDamage(dmg), player.beeKB(0f), Main.myPlayer, 0f, 0f);
 			}
+		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("QueenBeeShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("QueenBeeShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("QueenBeeShapelegs", EquipType.Legs);
 		}
 	}
 }

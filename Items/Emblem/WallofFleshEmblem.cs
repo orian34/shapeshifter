@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Emblem
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall of Flesh Emblem");
-			Tooltip.SetDefault("'This emblem shows your mutant fish mastery.' \nGrants you improved mobility in water \n6% increased melee damage and speed \n[c/00FFFF:Duke Fishron Shape]");
+			Tooltip.SetDefault("'This emblem shows your hungry abomination mastery.' \n6% increased melee damage and speed \n[c/9E0202:Wall of Flesh Shape]");
 		}
 		public override void SetDefaults()
 		{

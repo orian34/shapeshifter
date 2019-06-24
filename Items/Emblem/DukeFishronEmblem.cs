@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Emblem
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Duke Fishron Emblem");
-			Tooltip.SetDefault("'This emblem shows your mutant fish mastery.' \nGrants you improved mobility in water \n6% increased throwing and minion damage \n[c/00FFFF:Duke Fishron Shape]");
+			Tooltip.SetDefault("'This emblem shows your mutant fish mastery.' \nGrants you improved mobility in water \n6% increased throwing and summoning damage \n[c/00FFFF:Duke Fishron Shape]");
 		}
 		public override void SetDefaults()
 		{

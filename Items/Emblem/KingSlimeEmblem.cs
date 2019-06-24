@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Emblem
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("King Slime Emblem");
-			Tooltip.SetDefault("'This emblem shows your slime mastery.' \nIncreased number of Minions \n6% increased magic and minion damage \n[c/0066CC:King Slime Shape]");
+			Tooltip.SetDefault("'This emblem shows your slime mastery.' \nIncreased number of Minions \n6% increased magic and summoning damage \n[c/0066CC:King Slime Shape]");
 		}
 		public override void SetDefaults()
 		{

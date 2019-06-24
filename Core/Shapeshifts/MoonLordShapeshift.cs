@@ -43,6 +43,34 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.buffImmune[BuffID.Weak] = true;
 			player.buffImmune[BuffID.Gravitation] = true;
 			player.buffImmune[BuffID.VortexDebuff] = true;
+			if(Main.rand.Next(80) == 0)
+			{
+				float closer = 666f;
+				int closest = 0;
+				bool aiming = false;
+				for(int i = 0; i < 200; i++)
+				{
+				   NPC target = Main.npc[i];
+				   if(target.CanBeChasedBy())
+				   {
+					   float lookToX = target.position.X + (float)target.width * 0.5f - player.Center.X;
+					   float lookToY = target.position.Y - player.Center.Y;
+					   float distance = (float)System.Math.Sqrt((double)(lookToX * lookToX + lookToY * lookToY));
+					   if(distance < closer)
+						{
+							closer = distance;
+							closest = i;
+							aiming = true;
+						}
+				   }
+				}
+				if(aiming)
+				{
+					NPC target2 = Main.npc[closest];
+					int dmg = (int)(player.minionDamage*200f);
+					Projectile.NewProjectile(player.position, (Vector2.Normalize(player.position-target2.position))*-12, mod.ProjectileType("MoonEye"), dmg, 0, Main.myPlayer);
+				}
+			}
 			player.gravity = 0;
 			player.canCarpet = false;
 			player.rocketTime = 0;
@@ -136,6 +164,14 @@ namespace Shapeshifter.Core.Shapeshifts
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			Main.PlaySound(3 , player.position, 1);
+		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("MoonLordShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("MoonLordShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("MoonLordShapelegs", EquipType.Legs);
+			player.shoe = 0;
 		}
 	}
 }

@@ -136,5 +136,12 @@ namespace Shapeshifter.Core.Shapeshifts
 		{
 			Main.PlaySound(3 , player.position, 1);
 		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("BrainofCthulhuShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("BrainofCthulhuShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("BrainofCthulhuShapelegs", EquipType.Legs);
+		}
 	}
 }

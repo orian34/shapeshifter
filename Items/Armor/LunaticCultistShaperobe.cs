@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Lunatic Cultist Shaperobe");
-			Tooltip.SetDefault("Greatly increases your mana pool. \n[c/4A1FA1:2/2 Lunatic Set Piece]");
+			Tooltip.SetDefault("Greatly increases your mana pool \n[c/4A1FA1:2/2 Lunatic Cultist Set Piece]");
 		}
 		public override void SetDefaults()
 		{
@@ -32,6 +32,10 @@ namespace Shapeshifter.Items.Armor
 		{
 			robes = true;
 			equipSlot = mod.GetEquipSlot("LunaticCultistShaperobe_Legs", EquipType.Legs);
+		}
+		public override void UpdateVanity(Player player, EquipType type)
+		{
+			player.shoe = 0;
 		}
 		public override void AddRecipes()
 		{

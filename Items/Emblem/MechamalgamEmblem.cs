@@ -12,7 +12,7 @@ namespace Shapeshifter.Items.Emblem
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mechamalgam Emblem");
-			Tooltip.SetDefault("'This emblem shows your energy-powered amalgam mastery.' \nImproved abilities if powered \n6% increased ranged and minion damage \n[c/8E8E8E:Mechamalgam Shape]");
+			Tooltip.SetDefault("'This emblem shows your energy-powered amalgam mastery.' \nImproved abilities if powered \n6% increased ranged and summoning damage \n[c/8E8E8E:Mechamalgam Shape]");
 		}
 		public override void SetDefaults()
 		{

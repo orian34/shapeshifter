@@ -36,7 +36,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.npcTypeNoAggro[99] = true;
 			player.npcTypeNoAggro[100] = true;
 			player.meleeSpeed += 0.1f;
-			player.meleeDamage += 0.1f;
+			player.meleeDamage += 0.12f;
 			player.minionDamage += 0.4f;
 			player.maxMinions -= 3; 
 		}
@@ -77,6 +77,13 @@ namespace Shapeshifter.Core.Shapeshifts
 				float speedY = (float)Main.rand.Next(-150, 151) * 0.01f;
 				Projectile.NewProjectile(player.position.X, player.position.Y, speedX, speedY, ProjectileID.TinyEater, dmg, 0, Main.myPlayer);
 			}
+		}
+		
+		public override void FrameEffects()
+		{
+			player.head = mod.GetEquipSlot("EaterofWorldShapemask", EquipType.Head);
+			player.body = mod.GetEquipSlot("EaterofWorldShapeplate", EquipType.Body);
+			player.legs = mod.GetEquipSlot("EaterofWorldShapelegs", EquipType.Legs);
 		}
 	}
 }

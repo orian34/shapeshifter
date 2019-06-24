@@ -125,14 +125,17 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void FrameEffects()
 		{
+			player.legs = mod.GetEquipSlot("GolemShapelegs", EquipType.Legs);
 			if (dangerMode)
 			{
 				Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 1.4f, 0f, 0f);
-				if(player.armor[10].headSlot < 0) {player.head = mod.GetEquipSlot("GolemShapemaskDanger", EquipType.Head);}
-				if(player.armor[11].bodySlot < 0) {player.body = mod.GetEquipSlot("GolemShapeplateDanger", EquipType.Body);}
+				player.head = mod.GetEquipSlot("GolemShapemaskDanger", EquipType.Head);
+				player.body = mod.GetEquipSlot("GolemShapeplateDanger", EquipType.Body);
 			}
 			else
 			{
+				player.head = mod.GetEquipSlot("GolemShapemask", EquipType.Head);
+				player.body = mod.GetEquipSlot("GolemShapeplate", EquipType.Body);
 				Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
 			}
 		}
