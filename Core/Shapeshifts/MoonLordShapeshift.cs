@@ -33,6 +33,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			player.meleeDamage += 0.3f;
 			player.rangedDamage += 0.3f;
 			player.endurance += 0.2f;
+			player.noFallDmg = true;
 		}
 
 		public override void PostUpdateBuffs()
