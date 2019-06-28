@@ -1,21 +1,24 @@
 This mod is focused on adding more items to become a shapeshifter. 
-Armor sets built from boss remains to impersonate them and gain their abilities and others things.
+Armor sets built from boss remains to impersonate them and gain their abilities.
+Other things like emblems, coming at a higher cost but only taking up an accessory slot.
 
 Content :
--The King Slime Shapeshifter's Armor. Become the ruler of the slimes!
--The Eye of Cthulhu Shapeshifter's Armor. Become rage incarnate!
--The Eater of World Shapeshifter's Armor. Become the corrupted worm!
--The Brain of Cthulhu Shapeshifter's Armor. Become the malicious brain!
--The Queen Bee Shapeshifter's Armor. Become the swarm queen!
--The Skeletron Shapeshifter's Armor. Become the cursed guardian!
--The Wall of Flesh Shapeshifter's Armor. Become the hungry abomination!
--The Mechamalgam Shapeshifter's Armor. Become the energy-powered amalgam!
--The Plantera Shapeshifter's Armor. Become the evergrowing plant!
--The Golem Shapeshifter's Armor. Become the ancient construct!
--The Duke Fishron Shapeshifter's Armor. Become the mutant fish!
--The Moon Lord Shapeshifter's Armor. Become the eldritch god!
--The Lunatic Cultist Shapeshifter's Armor. Become the mystic sorcerer!
+-King Slime's shape. Become the ruler of the slimes!
+-The Eye of Cthulhu's shape. Become rage incarnate!
+-The Eater of World's shape. Become the corrupted worm!
+-The Brain of Cthulhu's shape. Become the malicious brain!
+-Queen Bee's shape. Become the swarm queen!
+-Skeletron's shape. Become the cursed guardian!
+-The Wall of Flesh's shape. Become the hungry abomination!
+-The Mechamalgam's shape. Become the energy-powered amalgam!
+-Plantera's shape. Become the evergrowing plant!
+-The Golem's shape. Become the ancient construct!
+-Duke Fishron's shape. Become the mutant fish!
+-Moon Lord's shape. Become the eldritch god!
+-The Lunatic Cultist's shape. Become the mystic sorcerer!
 
+v2.0
+Added Emblems and a new mod icon, credits to Zoomo for the sprites! Now you can have shapes without taking up armor slots. Tweaked a few shapes.
 v1.7.7
 Reworked Plantera, Golem, Fishron, Moon Lord and Lunatic Cultist's armors. Changed a few things around.
 v1.7.6

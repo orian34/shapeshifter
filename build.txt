@@ -1,5 +1,5 @@
 author = orian34
-version = 1.7.7
+version = 2.0
 displayName = The Shapeshifter
 homepage = https://forums.terraria.org/index.php?threads/the-shapeshifter.55006/
 hideCode = false
