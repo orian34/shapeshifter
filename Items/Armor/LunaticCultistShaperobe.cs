@@ -42,6 +42,7 @@ namespace Shapeshifter.Items.Armor
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(2859);
 			recipe.AddIngredient(ItemID.FragmentNebula,22);
+			recipe.AddIngredient(ItemID.LunarBar,16);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
