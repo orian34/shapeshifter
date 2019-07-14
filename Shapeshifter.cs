@@ -110,24 +110,6 @@ namespace Shapeshifter
 	public class Shapeplayer : ModPlayer
 	{
 
-		public override void ResetEffects()
-		{
-		}
-		
-		public void UpdateLifeRegen2()
-		{
-		}
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-		{
-		}
-		public override void OnHitNPC (Item item, NPC target, int damage, float knockback, bool crit)
-		{
-		}
-
-		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-		{
-		}
-
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
 			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
@@ -143,10 +125,6 @@ namespace Shapeshifter
 			{
 				return true;
 			}
-		}
-
-		public override void FrameEffects()
-		{
 		}
 		
 	}   
