@@ -12,6 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
+using Terraria.Localization;
 
 namespace Shapeshifter
 {
@@ -52,7 +53,7 @@ namespace Shapeshifter
 
 		public override void AddRecipeGroups()
 		{
-			RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Evil Ore", new int[]
+			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Evil Ore", new int[]
 			{
 			ItemID.CrimtaneOre,
 			ItemID.DemoniteOre
@@ -60,7 +61,7 @@ namespace Shapeshifter
 			);
 			RecipeGroup.RegisterGroup("anyEvilOre", group);
 			
-			RecipeGroup seeds = new RecipeGroup(() => Lang.misc[37] + " Evil Seed", new int[]
+			RecipeGroup seeds = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Evil Seed", new int[]
 			{
 			ItemID.CorruptSeeds,
 			ItemID.CrimsonSeeds
@@ -68,7 +69,7 @@ namespace Shapeshifter
 			);
 			RecipeGroup.RegisterGroup("anyEvilSeed", seeds);
 			
-			RecipeGroup elight = new RecipeGroup(() => Lang.misc[37] + " Evil Light", new int[]
+			RecipeGroup elight = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Evil Light", new int[]
 			{
 			ItemID.ShadowOrb,
 			ItemID.CrimsonHeart
@@ -76,7 +77,7 @@ namespace Shapeshifter
 			);
 			RecipeGroup.RegisterGroup("anyEvilLight", elight);
 			
-			RecipeGroup tier = new RecipeGroup(() => Lang.misc[37] + " Tier 1 Metal Bar", new int[]
+			RecipeGroup tier = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Tier 1 Metal Bar", new int[]
 			{
 			ItemID.CobaltBar,
 			ItemID.PalladiumBar
@@ -84,7 +85,7 @@ namespace Shapeshifter
 			);
 			RecipeGroup.RegisterGroup("anyTier1Bar", tier);
 			
-			RecipeGroup crowns = new RecipeGroup(() => Lang.misc[37] + " Crown", new int[]
+			RecipeGroup crowns = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Crown", new int[]
 			{
 			ItemID.GoldCrown,
 			ItemID.PlatinumCrown
@@ -92,7 +93,7 @@ namespace Shapeshifter
 			);
 			RecipeGroup.RegisterGroup("anyCrown", crowns);
 			
-			RecipeGroup mirror = new RecipeGroup(() => Lang.misc[37] + " Mirror", new int[]
+			RecipeGroup mirror = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Mirror", new int[]
 			{
 			ItemID.MagicMirror,
 			ItemID.IceMirror
@@ -126,6 +127,7 @@ namespace Shapeshifter
 				return true;
 			}
 		}
+
 		
 	}   
 }
