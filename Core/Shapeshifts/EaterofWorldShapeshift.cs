@@ -27,14 +27,15 @@ namespace Shapeshifter.Core.Shapeshifts
 
 		public override void PreUpdateBuffs()
 		{
-			player.npcTypeNoAggro[6] = true;
-			player.npcTypeNoAggro[94] = true;
-			player.npcTypeNoAggro[7] = true;
-			player.npcTypeNoAggro[8] = true;
-			player.npcTypeNoAggro[9] = true;
-			player.npcTypeNoAggro[98] = true;
-			player.npcTypeNoAggro[99] = true;
-			player.npcTypeNoAggro[100] = true;
+			player.npcTypeNoAggro[NPCID.EaterofSouls] = true;
+			player.npcTypeNoAggro[NPCID.Corruptor] = true;
+			player.npcTypeNoAggro[NPCID.DevourerHead] = true;
+			player.npcTypeNoAggro[NPCID.DevourerBody] = true;
+			player.npcTypeNoAggro[NPCID.DevourerTail] = true;
+			player.npcTypeNoAggro[NPCID.SeekerHead] = true;
+			player.npcTypeNoAggro[NPCID.SeekerBody] = true;
+			player.npcTypeNoAggro[NPCID.SeekerTail] = true;
+			player.npcTypeNoAggro[NPCID.VileSpit] = true;
 			player.meleeSpeed += 0.1f;
 			player.meleeDamage += 0.12f;
 			player.minionDamage += 0.4f;
