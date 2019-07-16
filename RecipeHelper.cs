@@ -69,6 +69,7 @@ namespace Shapeshifter
 			recipeTW.AddIngredient(ItemID.HallowedBar, 8);
 			recipeTW.AddIngredient(ItemID.Wire, 6);
 			recipeTW.AddIngredient(ItemID.Cog, 3);
+			recipeTW.AddIngredient(ItemID.SoulofSight, 1);
 			recipeTW.AddTile(TileID.MythrilAnvil);
 			recipeTW.SetResult(ItemID.MechanicalWheelPiece);
 			recipeTW.AddRecipe();
@@ -77,6 +78,7 @@ namespace Shapeshifter
 			recipeTD.AddIngredient(ItemID.HallowedBar, 12);
 			recipeTD.AddIngredient(ItemID.Wire, 18);
 			recipeTD.AddIngredient(ItemID.Minecart);
+			recipeTD.AddIngredient(ItemID.SoulofMight, 1);
 			recipeTD.AddTile(TileID.MythrilAnvil);
 			recipeTD.SetResult(ItemID.MechanicalWagonPiece);
 			recipeTD.AddRecipe();
@@ -84,7 +86,8 @@ namespace Shapeshifter
 			ModRecipe recipeSP = new ModRecipe(mod);
 			recipeSP.AddIngredient(ItemID.HallowedBar, 10);
 			recipeSP.AddIngredient(ItemID.Wire, 12);
-			recipeSP.AddIngredient(ItemID.Timer1Second, 2);
+			recipeSP.AddIngredient(ItemID.Timer1Second, 1);
+			recipeSP.AddIngredient(ItemID.SoulofFright, 1);
 			recipeSP.AddTile(TileID.MythrilAnvil);
 			recipeSP.SetResult(ItemID.MechanicalBatteryPiece);
 			recipeSP.AddRecipe();

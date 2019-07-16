@@ -1,6 +1,6 @@
-This mod is focused on adding more items to become a shapeshifter. 
+This mod is focused on adding more items and ways to become a shapeshifter. 
 Armor sets built from boss remains to impersonate them and gain their abilities.
-Other things like emblems, coming at a higher cost but only taking up an accessory slot.
+Other things like emblems, coming at a higher cost but only taking up an accessory slot to obtain the shape.
 
 Content :
 -King Slime's shape. Become the ruler of the slimes!

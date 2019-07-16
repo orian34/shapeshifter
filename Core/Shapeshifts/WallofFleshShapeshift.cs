@@ -15,7 +15,7 @@ namespace Shapeshifter.Core.Shapeshifts
 	{
 		public override string BossName => "Wall of Flesh";
 		public override string ShapeshiftName => "Wall of Flesh Shapeshift";
-		public override string ShapeDesc => "Enemies make you hungry, and you'll need to feed off by fighting in close combat. Most ways of healing are rendered moot besides feeding, you can lower the hunger by eating normal food, but it's not enough to fully satiate you.";
+		public override string ShapeDesc => "Enemies make you hungry, and you'll need to feed off by fighting in close combat. Most ways of healing are rendered moot besides feeding, you can lower the hunger by eating normal food.";
 
 		public float hitCount;
 		public float Fedness;
