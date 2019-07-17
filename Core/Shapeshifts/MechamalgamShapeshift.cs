@@ -73,7 +73,9 @@ namespace Shapeshifter.Core.Shapeshifts
 				energyCount += num17;
 			}
 			if (player.FindBuffIndex(BuffID.Electrified) != -1)	{energyCount += 100;}
-			if(player.wet || Main.raining && player.ZoneOverworldHeight)
+			int x = (int)player.position.X/16;
+            int y = (int)player.position.Y/16;
+			if(player.wet || Main.raining && player.ZoneOverworldHeight && Main.tile[x,y].wall == 0)
 			{
 				energyCount -= 10;
 				int r = 7;

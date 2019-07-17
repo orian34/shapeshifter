@@ -57,6 +57,8 @@ namespace Shapeshifter.Core.Shapeshifts
 		public override void PostUpdateBuffs()
 		{
 			player.buffImmune[BuffID.Chilled] = true;
+			int x = (int)player.position.X/16;
+            int y = (int)player.position.Y/16;
 			if (player.FindBuffIndex(BuffID.Electrified) != -1)	
 			{
 				if(Main.rand.Next(2) == 0)
@@ -79,7 +81,7 @@ namespace Shapeshifter.Core.Shapeshifts
             {
                 player.sharknadoMinion = true;
             }
-			if(!player.wet && !player.dripping && (!player.ZoneOverworldHeight || !Main.raining && player.ZoneOverworldHeight) && player.armor[0].type != 250)
+			if(!player.wet && !player.dripping && (!player.ZoneOverworldHeight || player.ZoneOverworldHeight && (!Main.raining || Main.tile[x,y].wall > 0)) && player.armor[0].type != 250)
 			{
 				dukeBreath--;
 				if(dukeBreath < 1)
