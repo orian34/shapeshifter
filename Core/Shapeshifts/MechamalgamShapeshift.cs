@@ -43,6 +43,7 @@ namespace Shapeshifter.Core.Shapeshifts
 		public override void PostUpdateBuffs()
 		{
 			player.buffImmune[20] = true;
+			player.buffImmune[BuffID.OnFire] = true;
 			player.buffImmune[31] = true;
 			player.buffImmune[32] = true;
 			int num16 = (int)(1f + Main.player[Main.myPlayer].velocity.Length() * 6f);
