@@ -91,10 +91,7 @@ namespace Shapeshifter.Core.Shapeshifts
 			}
 			int j = (int)(slimeJump/100f)-3;
 			Player.jumpHeight += j;
-			if(slimeJump > 0)
-			{
-				player.drippingSlime = true;
-			}
+			if(slimeJump > 0){player.drippingSlime = true;}
 			if (player.ownedProjectileCounts[266] < 1 && player.whoAmI == Main.myPlayer)
 			{
 				int dmg = (int)(7f * player.minionDamage);
@@ -102,47 +99,44 @@ namespace Shapeshifter.Core.Shapeshifts
 				Main.projectile[newProj].usesIDStaticNPCImmunity = true;
 				Main.projectile[newProj].idStaticNPCHitCooldown = 10;
 			}
-			if (player.ownedProjectileCounts[266] > 0)
-            {
-                player.slime = true;
-            }
+			if (player.ownedProjectileCounts[266] > 0) {player.slime = true;}
 			if (player.velocity.Y > 0f && !player.mount.Active)
-			  {
+			{
 				Rectangle rect = player.getRect();
 				rect.Offset(-1, player.height - 1);
 				rect.Height =  2;
 				rect.Inflate(10, 3);
 				for (int i = 0; i < 200; i++)
 				{
-				  NPC target = Main.npc[i];
-				  if (target.CanBeChasedBy() && target.immune[player.whoAmI] == 0)
-				  {
-					Rectangle rect2 = target.getRect();
-					if (rect.Intersects(rect2) && (target.noTileCollide || Collision.CanHit(player.position, player.width, player.height, target.position, target.width, target.height)))
+					NPC target = Main.npc[i];
+					if (target.CanBeChasedBy() && target.immune[player.whoAmI] == 0)
 					{
-					  float num = 40f * player.minionDamage;
-					  float knockback = 5f;
-					  int direction = player.direction;
-					  if (player.velocity.X < 0f) direction = -1;
-					  if (player.velocity.X > 0f) direction = 1;
-					  if (player.whoAmI == Main.myPlayer) 
-					  {
-						target.StrikeNPC((int)num, knockback, direction, false, false, false);
-						 if (Main.netMode != 0) NetMessage.SendData(28, -1, -1, null, i, num, knockback, (float)direction, 0, 0, 0);
-						 for (int i2 = 0; i2 < 30; i2++)
+						Rectangle rect2 = target.getRect();
+						if (rect.Intersects(rect2) && (target.noTileCollide || Collision.CanHit(player.position, player.width, player.height, target.position, target.width, target.height)))
 						{
-							Dust.NewDust(new Vector2(player.position.X, player.position.Y+34), 16, 4, 103, 0f, -1f, 0, default(Color));
+							float num = 40f * player.minionDamage;
+							float knockback = 5f;
+							int direction = player.direction;
+							if (player.velocity.X < 0f) direction = -1;
+							if (player.velocity.X > 0f) direction = 1;
+							if (player.whoAmI == Main.myPlayer) 
+							{
+								target.StrikeNPC((int)num, knockback, direction, false, false, false);
+								if (Main.netMode != 0) NetMessage.SendData(28, -1, -1, null, i, num, knockback, (float)direction, 0, 0, 0);
+								for (int i2 = 0; i2 < 30; i2++)
+								{
+									Dust.NewDust(new Vector2(player.position.X, player.position.Y+34), 16, 4, 103, 0f, -1f, 0, default(Color));
+								}
+							}
+							target.immune[player.whoAmI] = 10;
+							player.velocity.Y = -10f;
+							player.immune = true;
+							player.immuneTime = 6;
+							break;
 						}
-					  }
-					  target.immune[player.whoAmI] = 10;
-					  player.velocity.Y = -10f;
-					  player.immune = true;
-					  player.immuneTime = 6;
-					  break;
 					}
-				  }
 				}
-			  }
+			}
 			if(slimeFire)
 			{
 				if(Main.rand.Next(3) == 0) player.statLife--;
