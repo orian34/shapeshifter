@@ -62,11 +62,10 @@ namespace Shapeshifter.Projectiles
 			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap, DepthStencilState.Default, RasterizerState.CullNone, null, Main.Transform);
 #pragma warning restore CS0618 // Type or member is obsolete
 
-			Terraria.Graphics.Effects.Filters.Scene["Nebula"].GetShader().UseIntensity(100f).UseProgress(0f);
 			Vector2 plrScrPos = Main.player[projectile.owner].Center - Main.screenPosition;
 			DrawData drwdt = new DrawData(ModContent.GetTexture("Terraria/Misc/Perlin"), plrScrPos, new Rectangle(0, 0, 600, 600), new Color(150, 237, 255) * projectile.ai[0], 0f, new Vector2(300f, 300f), 4f * 0.05f, SpriteEffects.FlipHorizontally, 0);
-			GameShaders.Misc["ForceField"].UseColor(new Vector3(0.95f + 0.95f * 0.5f));
-			GameShaders.Misc["ForceField"].Apply(drwdt);
+			GameShaders.Misc["ShapeshifterForceField"].UseColor(new Vector3(0.95f + 0.95f * 0.5f));
+			GameShaders.Misc["ShapeshifterForceField"].Apply(drwdt);
 			drwdt.Draw(spriteBatch);
 			return false;
         }
