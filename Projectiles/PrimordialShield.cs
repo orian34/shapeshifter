@@ -52,7 +52,6 @@ namespace Shapeshifter.Projectiles
 
 			if (projectile.ai[0] < 1f) projectile.ai[0] += 0.1f;
 			if (projectile.ai[0] >= 1f) projectile.ai[1]++;
-			Main.NewText(projectile.ai[1]);
 			if (projectile.ai[1] >= 227) projectile.ai[0] -= 0.2f;
 		}
 

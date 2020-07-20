@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Shapeshifter.Core;
 using Shapeshifter.Core.Shapeshifts;
+using Shapeshifter.Projectiles;
 
 namespace Shapeshifter.Items
 {
@@ -99,7 +100,9 @@ namespace Shapeshifter.Items
 					   }
 					}
 					Main.PlaySound(4 , player.position, 43);
-					Projectile.NewProjectile(Main.MouseWorld.X-410, Main.MouseWorld.Y-420, 0f, 0f, mod.ProjectileType("Shockwave"), 0, 0, player.whoAmI);
+					Projectile dummy = new Projectile();
+					dummy.SetDefaults(ModContent.ProjectileType<Shockwave>());
+					Projectile.NewProjectile(Main.MouseWorld.X - dummy.width / 4, Main.MouseWorld.Y - dummy.height / 4, 0f, 0f, mod.ProjectileType("Shockwave"), 0, 0, player.whoAmI);
 					return false;
 				}
 				else {return true;}
