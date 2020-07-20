@@ -13,6 +13,10 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using Terraria.Localization;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
+using System.ComponentModel;
+using Shapeshifter.Projectiles;
 
 namespace Shapeshifter
 {
@@ -49,6 +53,21 @@ namespace Shapeshifter
 			AddEquipTexture(new Items.Armor.PlanteraShapemaskAwakened(), null, EquipType.Head, "PlanteraShapemaskAwakened", "Shapeshifter/Items/Armor/PlanteraShapemaskAwakened_Head");
 			AddEquipTexture(new Items.Armor.GolemShapemaskDanger(), null, EquipType.Head, "GolemShapemaskDanger", "Shapeshifter/Items/Armor/GolemShapemaskDanger_Head");
 			AddEquipTexture(new Items.Armor.GolemShapeplateDanger(), null, EquipType.Body, "GolemShapeplateDanger", "Shapeshifter/Items/Armor/GolemShapeplateDanger_Body", "Shapeshifter/Items/Armor/GolemShapeplateDanger_Arms");
+
+			if (Main.netMode != NetmodeID.Server)
+            {
+				Ref<Effect> shockwaveRef = new Ref<Effect>(GetEffect("Effects/ShockwaveEffect"));
+				Filters.Scene["ShapeshifterShockwave1"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
+				Filters.Scene["ShapeshifterShockwave1"].Load();
+				Filters.Scene["ShapeshifterShockwave2"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
+				Filters.Scene["ShapeshifterShockwave2"].Load();
+				Filters.Scene["ShapeshifterShockwave3"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
+				Filters.Scene["ShapeshifterShockwave3"].Load();
+				Filters.Scene["ShapeshifterShockwave4"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
+				Filters.Scene["ShapeshifterShockwave4"].Load();
+				Filters.Scene["ShapeshifterShockwave5"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
+				Filters.Scene["ShapeshifterShockwave5"].Load();
+			}
 		}
 
 		public override void AddRecipeGroups()
@@ -114,11 +133,11 @@ namespace Shapeshifter
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
 			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
-			if(player.ownedProjectileCounts[mod.ProjectileType("PrimordialShield")] > 0)
+			if(player.ownedProjectileCounts[ModContent.ProjectileType<PrimordialShield>()] > 0)
 			{
 				if(Main.rand.Next(14) == 0)
 				{
-					Main.PlaySound(2 , player.position, 48);
+					Main.PlaySound(SoundID.Item , player.position, 48);
 				}
 				return false;
 			}
@@ -127,7 +146,5 @@ namespace Shapeshifter
 				return true;
 			}
 		}
-
-		
-	}   
+    }   
 }

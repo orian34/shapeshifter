@@ -5,15 +5,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shapeshifter.Projectiles
 {
     public class Shockwave : ModProjectile
-    {
-        public override void SetStaticDefaults()
+	{
+		public override string Texture => "Terraria/Projectile_" + ProjectileID.ShadowBeamFriendly; // I.e. an invisible sprite
+
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shockwave");
-			Main.projFrames[projectile.type] = 2;
+			//Main.projFrames[projectile.type] = 2;
 		}
 		public override void SetDefaults()
 		{
@@ -29,14 +32,15 @@ namespace Shapeshifter.Projectiles
 		}
 		public override void AI()
 		{
-			if (++projectile.frameCounter >= 3)
+			if (projectile.timeLeft == 4) Projectile.NewProjectile(projectile.Center, Vector2.Zero, ModContent.ProjectileType<ShockwaveEffectPro>(), 0, 0, projectile.owner);
+			/*if (++projectile.frameCounter >= 3)
 			{
 				projectile.frameCounter = 0;
 				if (++projectile.frame >= 2)
 				{
 					projectile.frame = 0;
 				}
-			}
+			}*/
 		}
-	}
+    }
 }
