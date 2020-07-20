@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Shapeshifter.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,7 +35,7 @@ namespace Shapeshifter.Projectiles
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit,
 			ref int hitDirection) 
 		{
-			target.AddBuff(mod.BuffType<Buffs.Overgenerous>(), 333);
+			target.AddBuff(ModContent.BuffType<Overgenerous>(), 333);
 		}
 		public override void AI()
 		{

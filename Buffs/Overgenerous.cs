@@ -20,7 +20,7 @@ namespace Shapeshifter.Buffs
 		}
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<ShapeGlobalNPC>(mod).overgenerous = true;
+			npc.GetGlobalNPC<ShapeGlobalNPC>().overgenerous = true;
 		}
 	}
 }
