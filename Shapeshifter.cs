@@ -56,6 +56,8 @@ namespace Shapeshifter
 
 			if (Main.netMode != NetmodeID.Server)
             {
+				GameShaders.Misc["ShapeshifterForceField"] = new MiscShaderData(Main.PixelShaderRef, "ForceField");
+
 				Ref<Effect> shockwaveRef = new Ref<Effect>(GetEffect("Effects/ShockwaveEffect"));
 				Filters.Scene["ShapeshifterShockwave1"] = new Filter(new ScreenShaderData(shockwaveRef, "Shockwave"), EffectPriority.VeryHigh);
 				Filters.Scene["ShapeshifterShockwave1"].Load();

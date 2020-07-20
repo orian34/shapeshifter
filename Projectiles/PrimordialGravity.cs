@@ -113,5 +113,11 @@ namespace Shapeshifter.Projectiles
 		   float alph = 1f-(projectile.timeLeft/361f);
 			projectile.alpha = (int)(250*alph);
 		}
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+			// TODO: dust
+			return true;
+        }
     }
 }
